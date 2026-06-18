@@ -2,35 +2,41 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#211811">
-  <title>Archiwum 221B — Zaginiona Kartoteka</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080d0c">
+  <title>Archiwum Specjalne — Scotland Yard</title>
   <style>
     :root {
-      --ink: #2a2119;
-      --faded: #715f4b;
-      --paper: #ead9b5;
-      --paper-light: #f6ebce;
-      --paper-dark: #b99a68;
-      --red: #741f1b;
-      --red-dark: #45100e;
-      --gold: #a47a36;
-      --shadow: rgba(20, 12, 7, .52);
+      --black: #070a09;
+      --panel: #101714;
+      --panel-2: #151e1a;
+      --line: #33483e;
+      --line-soft: rgba(122, 151, 133, .18);
+      --green: #9bbca7;
+      --green-bright: #c8e1d0;
+      --muted: #718079;
+      --amber: #c5a567;
+      --red: #a94d47;
+      --paper: #d7c69f;
+      --ink: #29271f;
+      --shadow: rgba(0, 0, 0, .58);
+      --mono: "Courier New", Courier, monospace;
+      --serif: Georgia, "Times New Roman", serif;
     }
 
     * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
+    html { background: var(--black); scroll-behavior: smooth; }
 
     body {
       margin: 0;
+      min-width: 300px;
       min-height: 100vh;
-      color: var(--ink);
-      font-family: Georgia, "Times New Roman", serif;
+      color: #ced7d1;
+      font-family: var(--mono);
       background:
-        radial-gradient(circle at 20% 10%, rgba(255,255,255,.07), transparent 26%),
-        repeating-linear-gradient(105deg, rgba(255,255,255,.018) 0 1px, transparent 1px 5px),
-        #211811;
+        radial-gradient(circle at 50% -10%, rgba(74, 102, 86, .2), transparent 40%),
+        linear-gradient(rgba(8, 14, 11, .94), rgba(5, 8, 7, .98)),
+        repeating-linear-gradient(90deg, #111 0 1px, #0a0d0b 1px 5px);
       overflow-x: hidden;
     }
 
@@ -38,343 +44,755 @@
       content: "";
       position: fixed;
       inset: 0;
+      z-index: 100;
       pointer-events: none;
-      box-shadow: inset 0 0 110px #080503;
-      z-index: 20;
+      background: repeating-linear-gradient(0deg, rgba(255,255,255,.016) 0 1px, transparent 1px 4px);
+      box-shadow: inset 0 0 140px #000;
+      mix-blend-mode: screen;
     }
 
     button, input { font: inherit; }
+    button { -webkit-tap-highlight-color: transparent; }
+    [hidden] { display: none !important; }
 
-    .app {
-      width: min(920px, 100%);
+    .screen {
       min-height: 100vh;
-      margin: auto;
-      padding: max(18px, env(safe-area-inset-top)) 14px max(34px, env(safe-area-inset-bottom));
+      padding: max(20px, env(safe-area-inset-top)) 16px max(28px, env(safe-area-inset-bottom));
     }
 
-    .case-header {
-      color: #eadbbd;
-      text-align: center;
-      padding: 14px 8px 22px;
-      text-shadow: 0 2px 2px #000;
+    .screen-enter { animation: screenEnter .7s ease both; }
+    .screen-exit { animation: screenExit .42s ease both; }
+
+    @keyframes screenEnter {
+      from { opacity: 0; filter: blur(5px); transform: scale(1.012); }
+      to { opacity: 1; filter: none; transform: none; }
     }
 
-    .eyebrow {
-      margin: 0 0 8px;
-      color: #bf9a5c;
-      font-size: .73rem;
-      letter-spacing: .32em;
-      text-transform: uppercase;
+    @keyframes screenExit {
+      to { opacity: 0; filter: blur(3px); transform: scale(.99); }
     }
 
-    h1 {
-      margin: 0;
-      font-size: clamp(2rem, 8vw, 4.3rem);
-      font-weight: 500;
-      line-height: .98;
-    }
-
-    .subtitle {
-      margin: 12px auto 0;
-      color: #bda98a;
-      font-style: italic;
-      font-size: clamp(.95rem, 3vw, 1.2rem);
-    }
-
-    .progress-wrap {
-      max-width: 640px;
-      margin: 22px auto 0;
-    }
-
-    .progress-meta {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 7px;
-      color: #bda98a;
-      font-size: .75rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-
-    .progress-track {
-      height: 6px;
-      border: 1px solid #6b5336;
-      background: #100c09;
-      border-radius: 9px;
-      overflow: hidden;
-    }
-
-    .progress-bar {
-      width: 0;
-      height: 100%;
-      background: linear-gradient(90deg, var(--red), #b05f37, #d4aa58);
-      transition: width .8s cubic-bezier(.2,.8,.2,1);
-    }
-
-    .file-tabs {
-      display: flex;
-      gap: 7px;
-      justify-content: center;
-      margin: 0 auto -2px;
-      padding: 0 10px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .tab {
-      min-width: 45px;
-      padding: 8px 11px 10px;
-      border: 1px solid #927750;
-      border-bottom: 0;
-      border-radius: 7px 7px 0 0;
-      color: #33271b;
-      background: #aa9268;
-      cursor: pointer;
-      transition: transform .2s, background .2s, opacity .2s;
-      box-shadow: 0 -3px 8px rgba(0,0,0,.16);
-    }
-
-    .tab:hover:not(:disabled) { transform: translateY(-3px); }
-    .tab.active { background: var(--paper-light); transform: translateY(-4px); }
-    .tab:disabled { opacity: .35; cursor: not-allowed; }
-    .tab .lock { font-size: .72em; }
-
-    .paper {
-      position: relative;
-      min-height: 520px;
-      padding: clamp(25px, 6vw, 58px);
-      background:
-        linear-gradient(90deg, transparent 94%, rgba(71,46,23,.06)),
-        radial-gradient(circle at 14% 17%, rgba(111,74,29,.12) 0 1px, transparent 2px),
-        radial-gradient(circle at 82% 66%, rgba(111,74,29,.09) 0 2px, transparent 3px),
-        repeating-linear-gradient(0deg, rgba(88,57,25,.025) 0 1px, transparent 1px 4px),
-        var(--paper);
-      border: 1px solid #a88959;
-      box-shadow: 0 18px 55px var(--shadow), inset 0 0 55px rgba(107,72,30,.16);
-      clip-path: polygon(.5% 1%, 7% .35%, 13% .8%, 21% .15%, 29% .75%, 38% .3%, 47% .8%, 56% .2%, 65% .7%, 74% .25%, 83% .75%, 92% .2%, 99.5% .8%, 99.2% 12%, 99.7% 24%, 99.1% 38%, 99.6% 51%, 99.2% 66%, 99.7% 79%, 99.1% 91%, 99.5% 99%, 89% 99.5%, 78% 99%, 67% 99.6%, 55% 99.1%, 44% 99.7%, 31% 99.2%, 17% 99.7%, .6% 99%, .9% 87%, .3% 73%, .8% 60%, .2% 45%, .7% 31%, .3% 16%);
-    }
-
-    .paper::after {
-      content: "POUFNE";
-      position: absolute;
-      right: 5%;
-      top: 4%;
-      padding: 5px 10px;
-      border: 3px double rgba(116,31,27,.45);
-      color: rgba(116,31,27,.45);
-      font: 700 clamp(.7rem, 3vw, 1rem) Arial, sans-serif;
-      letter-spacing: .18em;
-      transform: rotate(7deg);
-    }
-
-    .chapter { display: none; }
-    .chapter.active { display: block; animation: pageIn .7s cubic-bezier(.18,.8,.25,1) both; }
-    .chapter.leaving { display: block; animation: pageOut .33s ease both; }
-
-    @keyframes pageIn {
-      from { opacity: 0; transform: translateX(34px) rotate(.7deg); filter: blur(3px); }
-      to { opacity: 1; transform: none; filter: blur(0); }
-    }
-
-    @keyframes pageOut {
-      to { opacity: 0; transform: translateX(-28px) rotate(-.5deg); filter: blur(2px); }
-    }
-
-    .chapter-number {
-      display: inline-block;
-      margin: 0 0 16px;
-      color: var(--red);
-      font: 700 .75rem Arial, sans-serif;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-    }
-
-    h2 {
-      max-width: 700px;
-      margin: 0 0 9px;
-      font-size: clamp(1.8rem, 6vw, 3.1rem);
-      line-height: 1.04;
-      font-weight: 500;
-    }
-
-    .location {
-      margin: 0 0 25px;
-      color: var(--faded);
-      font-size: .9rem;
-      font-style: italic;
-    }
-
-    .story {
-      font-size: clamp(1rem, 2.8vw, 1.15rem);
-      line-height: 1.65;
-    }
-
-    .story::first-letter {
-      float: left;
-      margin: 3px 7px 0 0;
-      color: var(--red);
-      font-size: 3.3rem;
-      line-height: .75;
-    }
-
-    .clue {
-      position: relative;
-      margin: 26px 0;
-      padding: 22px clamp(18px, 5vw, 34px);
-      border: 1px solid rgba(88,58,28,.42);
-      background: rgba(255,250,226,.44);
-      box-shadow: inset 0 0 22px rgba(80,50,20,.08), 3px 5px 0 rgba(79,52,27,.08);
-      transform: rotate(-.25deg);
-    }
-
-    .clue::before {
-      content: "DOWÓD RZECZOWY";
-      position: absolute;
-      top: -10px;
-      left: 16px;
-      padding: 3px 8px;
-      color: #f1dfbd;
-      background: var(--red);
-      font: 700 .62rem Arial, sans-serif;
-      letter-spacing: .13em;
-    }
-
-    .cipher {
-      text-align: center;
-      font-size: clamp(1.05rem, 4.2vw, 1.55rem);
-      line-height: 1.8;
-      letter-spacing: .12em;
-      font-weight: 700;
-      word-break: break-word;
-    }
-
-    .note { font-style: italic; line-height: 1.6; }
-    .acrostic span { display: block; }
-    .acrostic span::first-letter { color: var(--red); font-weight: 700; font-size: 1.25em; }
-
-    .answer-box {
+    /* ================================================================
+       EKRAN AUTORYZACJI
+       ================================================================ */
+    .login-screen {
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 10px;
-      margin-top: 28px;
+      place-items: center;
+      position: relative;
     }
 
-    .answer-box label {
-      grid-column: 1 / -1;
-      color: var(--faded);
-      font: 700 .7rem Arial, sans-serif;
+    .login-shell {
+      width: min(560px, 100%);
+      position: relative;
+      padding: clamp(28px, 7vw, 54px);
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(21,30,26,.96), rgba(8,13,11,.98));
+      box-shadow: 0 30px 90px #000, inset 0 0 45px rgba(83,117,97,.05);
+    }
+
+    .login-shell::before,
+    .login-shell::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-color: var(--amber);
+      opacity: .7;
+    }
+
+    .login-shell::before { left: -1px; top: -1px; border-left: 2px solid; border-top: 2px solid; }
+    .login-shell::after { right: -1px; bottom: -1px; border-right: 2px solid; border-bottom: 2px solid; }
+
+    .crest {
+      width: 86px;
+      height: 86px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 28px;
+      border: 1px solid var(--amber);
+      border-radius: 50%;
+      color: var(--amber);
+      box-shadow: inset 0 0 0 5px var(--panel), inset 0 0 0 6px rgba(197,165,103,.45);
+      font-family: var(--serif);
+      font-size: 1.85rem;
+      letter-spacing: -.08em;
+      position: relative;
+    }
+
+    .crest::after {
+      content: "METROPOLITAN POLICE";
+      position: absolute;
+      width: 150px;
+      bottom: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--muted);
+      background: var(--panel);
+      font: .54rem var(--mono);
+      letter-spacing: .18em;
+      text-align: center;
+    }
+
+    .kicker {
+      margin: 0 0 8px;
+      color: var(--amber);
+      font-size: .7rem;
+      letter-spacing: .24em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .login-title {
+      margin: 0;
+      color: #e0e6e2;
+      font: 400 clamp(2rem, 9vw, 3.45rem)/.95 var(--serif);
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .restricted {
+      width: max-content;
+      max-width: 100%;
+      margin: 20px auto 28px;
+      padding: 7px 14px;
+      border: 1px solid rgba(169,77,71,.6);
+      color: #c97972;
+      font-size: .68rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      transform: rotate(-1deg);
+    }
+
+    .status-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: .72rem;
+      text-transform: uppercase;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #67b87b;
+      box-shadow: 0 0 10px #67b87b;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse { 50% { opacity: .45; } }
+
+    .auth-note {
+      margin: 0 0 24px;
+      color: #929f98;
+      font: italic .9rem var(--serif);
+      text-align: center;
+    }
+
+    .field-label {
+      display: block;
+      margin: 0 0 8px;
+      color: var(--green);
+      font-size: .68rem;
       letter-spacing: .15em;
       text-transform: uppercase;
     }
 
-    .answer {
-      min-width: 0;
-      padding: 13px 14px;
-      border: 0;
-      border-bottom: 2px solid #6e5739;
+    .secure-input {
+      width: 100%;
+      min-height: 50px;
+      border: 1px solid var(--line);
       border-radius: 0;
       outline: none;
-      color: var(--ink);
-      background: rgba(255,255,255,.25);
-      box-shadow: inset 0 -4px 0 rgba(95,67,34,.05);
+      padding: 13px 15px;
+      color: var(--green-bright);
+      background: #080d0b;
+      caret-color: var(--amber);
+      letter-spacing: .13em;
+      box-shadow: inset 0 0 15px rgba(0,0,0,.7);
+      transition: border-color .2s, box-shadow .2s;
     }
 
-    .answer:focus { border-color: var(--red); background: rgba(255,255,255,.4); }
+    .secure-input:focus {
+      border-color: #6e8a7a;
+      box-shadow: 0 0 0 2px rgba(110,138,122,.12), inset 0 0 15px rgba(0,0,0,.7);
+    }
 
-    .submit {
-      padding: 12px 18px;
-      border: 0;
-      border-radius: 2px;
-      color: #f3dfbd;
-      background: linear-gradient(#832a24, #5a1714);
-      box-shadow: 0 4px 0 #35100e, 0 7px 12px rgba(0,0,0,.2);
+    .secure-input::placeholder { color: #415048; letter-spacing: .05em; }
+
+    .primary-button,
+    .file-button {
+      border: 1px solid #668071;
+      color: #d7e4dc;
+      background: linear-gradient(#25362e, #17231e);
       cursor: pointer;
-      font: 700 .75rem Arial, sans-serif;
-      letter-spacing: .1em;
       text-transform: uppercase;
-      transition: transform .15s, filter .15s;
+      letter-spacing: .12em;
+      transition: transform .15s, border-color .2s, background .2s;
     }
 
-    .submit:hover { filter: brightness(1.12); }
-    .submit:active { transform: translateY(3px); box-shadow: 0 1px 0 #35100e; }
-
-    .feedback {
-      grid-column: 1 / -1;
-      min-height: 24px;
-      margin: 2px 0 0;
-      font-size: .92rem;
-      font-style: italic;
+    .primary-button {
+      width: 100%;
+      min-height: 50px;
+      margin-top: 12px;
+      padding: 12px 18px;
+      font-size: .75rem;
     }
 
-    .feedback.error { color: #7c1d18; animation: shake .35s ease; }
-    .feedback.success { color: #31532a; font-weight: 700; }
+    .primary-button:hover,
+    .file-button:hover { border-color: var(--amber); background: linear-gradient(#304238, #1d2b25); }
+    .primary-button:active,
+    .file-button:active { transform: translateY(2px); }
+    .primary-button:disabled { cursor: wait; opacity: .6; }
 
-    @keyframes shake {
-      25% { transform: translateX(-5px); }
-      50% { transform: translateX(5px); }
-      75% { transform: translateX(-3px); }
-    }
-
-    .seal {
-      position: absolute;
-      right: clamp(18px, 5vw, 48px);
-      bottom: 28px;
-      width: 76px;
-      height: 76px;
-      display: grid;
-      place-items: center;
-      border: 4px double #a64136;
-      border-radius: 50%;
-      color: #a64136;
-      opacity: .48;
-      transform: rotate(-13deg);
-      font: 700 .58rem Arial, sans-serif;
-      letter-spacing: .08em;
+    .auth-feedback {
+      min-height: 36px;
+      margin: 14px 0 0;
+      color: #c77068;
+      font-size: .72rem;
+      line-height: 1.5;
       text-align: center;
     }
 
-    .complete-card { text-align: center; padding: 35px 0 90px; }
-    .complete-card .big-seal {
-      width: 120px;
-      height: 120px;
+    .auth-feedback.error { animation: shake .35s ease; }
+
+    @keyframes shake {
+      25% { transform: translateX(-4px); }
+      50% { transform: translateX(4px); }
+      75% { transform: translateX(-2px); }
+    }
+
+    .login-footer {
+      margin-top: 28px;
+      padding-top: 15px;
+      border-top: 1px solid var(--line-soft);
+      color: #4f5d56;
+      font-size: .57rem;
+      line-height: 1.6;
+      letter-spacing: .1em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    /* ================================================================
+       EKRAN ŁADOWANIA / TERMINAL SYSTEMOWY
+       ================================================================ */
+    .loader-screen {
       display: grid;
       place-items: center;
-      margin: 24px auto;
-      border: 8px double var(--red);
+    }
+
+    .terminal-loader {
+      width: min(600px, 100%);
+      padding: clamp(22px, 6vw, 44px);
+      border: 1px solid var(--line);
+      background: rgba(6, 11, 8, .92);
+      box-shadow: 0 25px 80px #000;
+    }
+
+    .terminal-head {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 27px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .62rem;
+      letter-spacing: .12em;
+    }
+
+    .loader-lines { min-height: 150px; }
+
+    .loader-line {
+      margin: 0 0 14px;
+      color: #73877b;
+      font-size: clamp(.72rem, 2.8vw, .86rem);
+      letter-spacing: .06em;
+      opacity: 0;
+      transform: translateY(5px);
+    }
+
+    .loader-line.visible { animation: lineIn .28s ease forwards; }
+    .loader-line.done { color: var(--green-bright); }
+    .loader-line::before { content: "> "; color: var(--amber); }
+
+    @keyframes lineIn { to { opacity: 1; transform: none; } }
+
+    .loader-bar {
+      height: 3px;
+      margin-top: 12px;
+      background: #1a2520;
+      overflow: hidden;
+    }
+
+    .loader-fill {
+      width: 0;
+      height: 100%;
+      background: var(--green);
+      box-shadow: 0 0 12px var(--green);
+      transition: width .55s ease;
+    }
+
+    /* ================================================================
+       WSPÓLNY NAGŁÓWEK BAZY I ŚLEDZTWA
+       ================================================================ */
+    .system-header {
+      width: min(1080px, 100%);
+      margin: 0 auto 26px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .system-brand { display: flex; align-items: center; gap: 13px; }
+
+    .mini-crest {
+      width: 46px;
+      height: 46px;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--amber);
       border-radius: 50%;
-      color: var(--red);
-      transform: rotate(-8deg);
-      font: 700 .8rem Arial, sans-serif;
-      letter-spacing: .08em;
-      animation: stamp .55s cubic-bezier(.2,1.7,.4,1) both;
+      color: var(--amber);
+      font: 1rem var(--serif);
     }
 
-    @keyframes stamp {
-      from { opacity: 0; transform: scale(2.5) rotate(-8deg); }
-      to { opacity: 1; transform: scale(1) rotate(-8deg); }
-    }
+    .system-name { margin: 0; font: 400 1.08rem var(--serif); letter-spacing: .05em; }
+    .system-path { margin: 4px 0 0; color: var(--muted); font-size: .59rem; letter-spacing: .1em; }
 
-    .reset {
-      margin-top: 16px;
-      border: 0;
-      border-bottom: 1px solid currentColor;
-      color: var(--faded);
+    .header-actions { display: flex; gap: 8px; }
+
+    .icon-button {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      padding: 8px 10px;
+      color: #8c9b93;
       background: transparent;
       cursor: pointer;
-      font-size: .82rem;
+      font-size: .63rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
     }
 
-    .case-footer { padding: 18px; color: #7f705e; text-align: center; font-size: .75rem; }
+    .icon-button:hover { border-color: var(--amber); color: var(--amber); }
 
-    @media (max-width: 560px) {
-      .app { padding-left: 8px; padding-right: 8px; }
-      .paper { min-height: 610px; }
-      .answer-box { grid-template-columns: 1fr; }
-      .answer-box label, .feedback { grid-column: auto; }
-      .submit { width: 100%; min-height: 47px; }
-      .tab { min-width: 40px; padding: 8px 7px 10px; }
-      .paper::after { top: 2.5%; }
-      .seal { bottom: 20px; }
+    /* ================================================================
+       BAZA AKT — LISTA SPRAW
+       ================================================================ */
+    .archive-screen { position: relative; }
+    .archive-content { width: min(1080px, 100%); margin: 0 auto; }
+
+    .database-heading {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 16px;
+      margin: clamp(34px, 8vw, 70px) 0 24px;
+    }
+
+    .database-heading h2 {
+      margin: 0;
+      color: #dbe3de;
+      font: 400 clamp(2rem, 7vw, 3.8rem)/1 var(--serif);
+    }
+
+    .database-heading p { margin: 8px 0 0; color: var(--muted); font-size: .72rem; line-height: 1.6; }
+
+    .record-count {
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      color: var(--green);
+      font-size: .65rem;
+      white-space: nowrap;
+    }
+
+    .case-list { display: grid; gap: 11px; }
+
+    .case-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(140px, .55fr) 1.45fr auto;
+      align-items: center;
+      gap: 22px;
+      min-height: 116px;
+      padding: 20px 22px;
+      border: 1px solid var(--line-soft);
+      background: linear-gradient(90deg, rgba(22,31,27,.9), rgba(12,18,15,.92));
+      box-shadow: 0 10px 25px rgba(0,0,0,.18);
+      overflow: hidden;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .case-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: #52685c;
+    }
+
+    .case-card:hover { border-color: rgba(155,188,167,.43); transform: translateY(-2px); }
+
+    .case-number { color: var(--amber); font-size: .71rem; letter-spacing: .12em; }
+    .case-year { display: block; margin-top: 8px; color: #4e5c55; font-size: .6rem; }
+
+    .case-title { margin: 0 0 8px; color: #d2dbd5; font: 400 clamp(1.1rem, 4vw, 1.45rem) var(--serif); }
+    .case-description { margin: 0; color: #75837c; font: italic .87rem/1.5 var(--serif); }
+
+    .file-button { min-height: 42px; padding: 10px 14px; font-size: .66rem; white-space: nowrap; }
+
+    .archive-foot {
+      margin: 28px 0 0;
+      color: #46534c;
+      font-size: .58rem;
+      letter-spacing: .08em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    /* ================================================================
+       MODAL OCHRONY AKT
+       ================================================================ */
+    .modal-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: grid;
+      place-items: center;
+      padding: 16px;
+      background: rgba(1, 4, 3, .84);
+      backdrop-filter: blur(7px);
+      animation: fadeIn .25s ease both;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } }
+
+    .modal {
+      width: min(500px, 100%);
+      position: relative;
+      padding: clamp(25px, 7vw, 44px);
+      border: 1px solid #43594d;
+      background: linear-gradient(145deg, #141d19, #090e0c);
+      box-shadow: 0 28px 100px #000;
+      animation: modalIn .35s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    @keyframes modalIn { from { opacity: 0; transform: translateY(18px) scale(.98); } }
+
+    .modal-mark {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 20px;
+      border: 1px solid var(--red);
+      color: #c66a63;
+      font: 1.35rem var(--serif);
+      transform: rotate(45deg);
+    }
+
+    .modal-mark span { transform: rotate(-45deg); }
+    .modal h2 { margin: 0 0 7px; color: #e0e6e2; font: 400 clamp(1.65rem, 7vw, 2.45rem) var(--serif); }
+    .modal-case { margin: 0 0 24px; color: var(--amber); font-size: .68rem; letter-spacing: .12em; }
+    .modal-message { min-height: 60px; margin: 16px 0 0; font-size: .73rem; line-height: 1.6; }
+    .modal-message.denied { color: #cf7069; animation: shake .35s ease; }
+    .modal-message.granted { color: var(--green-bright); }
+
+    .modal-close {
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      width: 38px;
+      height: 38px;
+      border: 0;
+      color: #69776f;
+      background: transparent;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    /* ================================================================
+       AKTA WŁAŚCIWEJ SPRAWY — WPROWADZENIE
+       ================================================================ */
+    .case-screen { background: #090d0b; }
+    .case-container { width: min(980px, 100%); margin: 0 auto; }
+
+    .dossier {
+      position: relative;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 13%, rgba(85,59,24,.12) 0 1px, transparent 2px),
+        radial-gradient(circle at 79% 74%, rgba(85,59,24,.09) 0 2px, transparent 3px),
+        repeating-linear-gradient(0deg, rgba(80,57,28,.025) 0 1px, transparent 1px 4px),
+        var(--paper);
+      box-shadow: 0 25px 80px var(--shadow), inset 0 0 65px rgba(72,47,18,.18);
+      min-height: 660px;
+      padding: clamp(26px, 7vw, 70px);
+      overflow: hidden;
+      clip-path: polygon(.4% .7%, 12% .2%, 25% .7%, 39% .2%, 53% .8%, 67% .15%, 82% .7%, 99.5% .3%, 99.2% 15%, 99.7% 31%, 99.2% 48%, 99.7% 66%, 99.1% 83%, 99.5% 99.4%, 83% 99%, 65% 99.7%, 48% 99.1%, 31% 99.7%, 14% 99%, .4% 99.5%, .8% 83%, .25% 66%, .8% 48%, .2% 31%);
+    }
+
+    .dossier::before {
+      content: "SCOTLAND YARD · CONFIDENTIAL";
+      position: absolute;
+      right: -72px;
+      top: 70px;
+      width: 310px;
+      padding: 8px;
+      border: 3px double rgba(124,42,36,.32);
+      color: rgba(124,42,36,.38);
+      font: 700 .75rem Arial, sans-serif;
+      letter-spacing: .12em;
+      text-align: center;
+      transform: rotate(39deg);
+    }
+
+    .dossier-label { margin: 0 0 10px; color: #772c28; font: 700 .67rem Arial, sans-serif; letter-spacing: .17em; }
+    .dossier h1 { max-width: 720px; margin: 0; font: 500 clamp(2rem, 7vw, 4.2rem)/.98 var(--serif); }
+    .dossier-meta { margin: 14px 0 30px; padding-bottom: 15px; border-bottom: 1px solid rgba(60,49,32,.35); color: #665a45; font-size: .68rem; letter-spacing: .1em; }
+
+    .narrative { max-width: 720px; font: 1.02rem/1.75 var(--serif); }
+    .narrative p:first-child::first-letter { float: left; margin: 5px 7px 0 0; color: #772c28; font-size: 3.4rem; line-height: .7; }
+
+    .evidence-list {
+      margin: 20px 0 25px;
+      padding: 18px 22px 18px 42px;
+      border-left: 3px solid #7b302a;
+      background: rgba(255,249,220,.27);
+      font: .94rem/1.7 var(--serif);
+    }
+
+    .found-note {
+      max-width: 620px;
+      margin: 28px auto;
+      padding: 23px clamp(18px, 5vw, 34px);
+      background: rgba(246,236,202,.62);
+      border: 1px solid rgba(86,65,34,.35);
+      box-shadow: 4px 6px 0 rgba(86,65,34,.1);
+      font: italic 1.02rem/1.65 var(--serif);
+      transform: rotate(-.45deg);
+    }
+
+    .found-note .signature { display: block; margin-top: 12px; text-align: right; }
+
+    .begin-button {
+      width: min(380px, 100%);
+      min-height: 52px;
+      display: block;
+      margin: 35px auto 0;
+      border: 1px solid #54211e;
+      color: #eee2c7;
+      background: linear-gradient(#7b302a, #4e1b18);
+      cursor: pointer;
+      font: 700 .71rem var(--mono);
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      box-shadow: 0 5px 0 #32110f;
+    }
+
+    .begin-button:active { transform: translateY(3px); box-shadow: 0 2px 0 #32110f; }
+
+    /* ================================================================
+       SILNIK ETAPÓW / KOPERT
+       ================================================================ */
+    .investigation-screen { background: #090d0b; }
+    .investigation-container { width: min(980px, 100%); margin: 0 auto; }
+
+    .progress-panel {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 16px;
+      margin: 30px 0 18px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+    }
+
+    .progress-labels { display: flex; justify-content: space-between; margin-bottom: 9px; color: var(--muted); font-size: .62rem; letter-spacing: .1em; }
+    .progress-track { height: 5px; background: #050806; overflow: hidden; }
+    .progress-fill { width: 0; height: 100%; background: linear-gradient(90deg, #506f5d, var(--green)); box-shadow: 0 0 10px var(--green); transition: width .7s ease; }
+    .progress-count { color: var(--amber); font-size: .75rem; white-space: nowrap; }
+
+    .stage-nav {
+      display: flex;
+      gap: 7px;
+      margin-bottom: 18px;
+      overflow-x: auto;
+      padding: 2px 0 8px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--line) transparent;
+    }
+
+    .stage-dot {
+      min-width: 43px;
+      min-height: 38px;
+      border: 1px solid var(--line);
+      color: #637168;
+      background: #0b110e;
+      cursor: pointer;
+      font-size: .68rem;
+    }
+
+    .stage-dot.active { border-color: var(--amber); color: var(--amber); }
+    .stage-dot.complete { border-color: #506d5d; color: var(--green); }
+    .stage-dot:disabled { opacity: .35; cursor: not-allowed; }
+
+    .stage-card {
+      position: relative;
+      min-height: 570px;
+      padding: clamp(25px, 7vw, 62px);
+      border: 1px solid #405449;
+      background:
+        linear-gradient(125deg, transparent 55%, rgba(93,119,104,.04)),
+        #111915;
+      box-shadow: 0 25px 70px #000;
+      overflow: hidden;
+      animation: fileOpen .65s cubic-bezier(.16,.8,.25,1) both;
+    }
+
+    @keyframes fileOpen {
+      from { opacity: 0; transform: perspective(900px) rotateY(-5deg) translateX(25px); filter: blur(3px); }
+      to { opacity: 1; transform: none; filter: none; }
+    }
+
+    .stage-card::after {
+      content: attr(data-watermark);
+      position: absolute;
+      right: -12px;
+      bottom: 42px;
+      color: rgba(155,188,167,.035);
+      font: 700 clamp(5rem, 24vw, 11rem) Arial, sans-serif;
+      pointer-events: none;
+    }
+
+    .stage-classification { margin: 0 0 20px; color: #a95750; font-size: .61rem; letter-spacing: .18em; }
+    .stage-number { margin: 0 0 8px; color: var(--amber); font-size: .68rem; letter-spacing: .15em; }
+    .stage-title { max-width: 720px; margin: 0 0 26px; color: #e0e6e2; font: 400 clamp(2rem, 7vw, 3.7rem)/1 var(--serif); }
+    .stage-story { max-width: 720px; color: #a9b4ae; font: 1rem/1.75 var(--serif); }
+
+    .envelope-order {
+      position: relative;
+      max-width: 650px;
+      margin: 30px 0;
+      padding: 20px 22px 20px 68px;
+      border: 1px solid rgba(197,165,103,.42);
+      background: rgba(197,165,103,.055);
+    }
+
+    .envelope-order::before {
+      content: "✉";
+      position: absolute;
+      left: 22px;
+      top: 50%;
+      color: var(--amber);
+      font: 1.8rem var(--serif);
+      transform: translateY(-50%);
+    }
+
+    .envelope-order strong { display: block; color: #dec58f; font-size: .8rem; letter-spacing: .12em; }
+    .envelope-order span { display: block; margin-top: 7px; color: #76837c; font: italic .86rem/1.5 var(--serif); }
+
+    .stage-form { max-width: 650px; display: grid; grid-template-columns: 1fr auto; gap: 10px; margin-top: 32px; position: relative; z-index: 2; }
+    .stage-form .field-label { grid-column: 1 / -1; }
+    .stage-form .primary-button { width: auto; margin: 0; }
+    .stage-feedback { grid-column: 1 / -1; min-height: 52px; margin: 4px 0 0; font-size: .72rem; line-height: 1.6; }
+    .stage-feedback.error { color: #ca6c65; animation: shake .35s ease; }
+    .stage-feedback.success { color: var(--green-bright); }
+
+    .stage-complete-stamp {
+      position: absolute;
+      right: clamp(20px, 6vw, 55px);
+      top: 58px;
+      width: 102px;
+      height: 102px;
+      display: grid;
+      place-items: center;
+      border: 5px double rgba(111,147,125,.45);
+      border-radius: 50%;
+      color: rgba(135,174,149,.58);
+      font: 700 .61rem/1.4 Arial, sans-serif;
+      letter-spacing: .08em;
+      text-align: center;
+      transform: rotate(-10deg);
+    }
+
+    /* ================================================================
+       EKRAN UKOŃCZENIA
+       ================================================================ */
+    .final-card { min-height: 600px; display: grid; place-items: center; text-align: center; }
+    .final-inner { max-width: 660px; position: relative; z-index: 2; }
+    .final-seal {
+      width: 135px;
+      height: 135px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 28px;
+      border: 7px double var(--amber);
+      border-radius: 50%;
+      color: var(--amber);
+      font: 700 .7rem/1.4 Arial, sans-serif;
+      letter-spacing: .1em;
+      transform: rotate(-7deg);
+      animation: stampIn .55s cubic-bezier(.18,1.5,.4,1) both;
+    }
+
+    @keyframes stampIn { from { opacity: 0; transform: scale(2.2) rotate(-7deg); } }
+
+    .final-card h2 { margin: 0 0 16px; color: #e0e6e2; font: 400 clamp(2.2rem, 8vw, 4rem) var(--serif); }
+    .final-card p { color: #9aa69f; font: 1rem/1.7 var(--serif); }
+
+    .text-button {
+      margin-top: 25px;
+      border: 0;
+      border-bottom: 1px solid currentColor;
+      padding: 4px 0;
+      color: #65736b;
+      background: transparent;
+      cursor: pointer;
+      font-size: .64rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    /* ================================================================
+       RESPONSYWNOŚĆ
+       ================================================================ */
+    @media (max-width: 700px) {
+      .screen { padding-left: 10px; padding-right: 10px; }
+      .system-header { grid-template-columns: 1fr; }
+      .header-actions { justify-content: flex-end; }
+      .database-heading { grid-template-columns: 1fr; align-items: start; }
+      .record-count { width: max-content; }
+      .case-card { grid-template-columns: 1fr; gap: 12px; padding: 19px; }
+      .case-card .file-button { width: 100%; }
+      .case-year { display: inline; margin: 0 0 0 8px; }
+      .dossier::before { right: -105px; top: 42px; }
+      .stage-complete-stamp { width: 72px; height: 72px; right: 18px; top: 25px; font-size: .48rem; }
+    }
+
+    @media (max-width: 520px) {
+      .login-shell { padding: 28px 20px; }
+      .system-brand { align-items: flex-start; }
+      .system-name { font-size: .95rem; }
+      .progress-panel { grid-template-columns: 1fr; }
+      .progress-count { text-align: right; }
+      .stage-form { grid-template-columns: 1fr; }
+      .stage-form .field-label, .stage-feedback { grid-column: auto; }
+      .stage-form .primary-button { width: 100%; }
+      .envelope-order { padding-left: 55px; }
+      .envelope-order::before { left: 16px; }
+      .stage-card { min-height: 620px; }
+      .stage-title { padding-right: 45px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -383,282 +801,641 @@
   </style>
 </head>
 <body>
-  <main class="app">
-    <header class="case-header">
-      <p class="eyebrow">Prywatne archiwum Sherlocka Holmesa</p>
-      <h1>Zaginiona Kartoteka</h1>
-      <p class="subtitle">Sprawa nr 1888/221B · Londyn tonie we mgle</p>
-      <div class="progress-wrap" aria-label="Postęp śledztwa">
-        <div class="progress-meta"><span>Postęp śledztwa</span><span id="progressText">0 / 5</span></div>
-        <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+
+  <!-- EKRAN 1: AUTORYZACJA DO ARCHIWUM -->
+  <main class="screen login-screen screen-enter" id="loginScreen">
+    <section class="login-shell" aria-labelledby="loginTitle">
+      <div class="crest" aria-hidden="true">SY</div>
+      <p class="kicker">Archiwum Specjalne</p>
+      <h1 class="login-title" id="loginTitle">Scotland Yard</h1>
+      <div class="restricted">Dostęp ograniczony</div>
+      <p class="status-line"><span class="status-dot"></span>Status systemu: online</p>
+      <p class="auth-note">Wymagana autoryzacja.</p>
+      <form id="loginForm" novalidate>
+        <label class="field-label" for="accessInput">Kod dostępu</label>
+        <input class="secure-input" id="accessInput" type="password" autocomplete="off" spellcheck="false" placeholder="Wprowadź kod operatora">
+        <button class="primary-button" id="loginButton" type="submit">Uzyskaj dostęp</button>
+        <p class="auth-feedback" id="loginFeedback" aria-live="polite"></p>
+      </form>
+      <div class="login-footer">Metropolitan Police Service · Secure Records Network<br>Nieautoryzowany dostęp podlega rejestracji</div>
+    </section>
+  </main>
+
+  <!-- EKRAN 2: ANIMACJA ŁADOWANIA DANYCH -->
+  <section class="screen loader-screen" id="loaderScreen" hidden aria-live="polite">
+    <div class="terminal-loader">
+      <div class="terminal-head"><span>SY-ARCHIVE / NODE 03</span><span>SECURE LINK</span></div>
+      <div class="loader-lines" id="loaderLines"></div>
+      <div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div>
+    </div>
+  </section>
+
+  <!-- EKRAN 3: BAZA AKT -->
+  <main class="screen archive-screen" id="archiveScreen" hidden>
+    <header class="system-header">
+      <div class="system-brand">
+        <div class="mini-crest" aria-hidden="true">SY</div>
+        <div>
+          <p class="system-name">SCOTLAND YARD · ARCHIWUM SPECJALNE</p>
+          <p class="system-path">/SECURE_RECORDS/CLASSIFIED_CASES</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="icon-button sound-toggle" type="button">Dźwięk: wył.</button>
+        <button class="icon-button" id="logoutButton" type="button">Rozłącz</button>
       </div>
     </header>
 
-    <nav class="file-tabs" id="tabs" aria-label="Rozdziały sprawy"></nav>
+    <div class="archive-content">
+      <section class="database-heading">
+        <div>
+          <h2>Baza akt</h2>
+          <p>Wyniki zapytania: sprawy utajnione · Wybierz rekord, aby rozpocząć procedurę dostępu.</p>
+        </div>
+        <span class="record-count">REKORDY: 005</span>
+      </section>
+      <section class="case-list" id="caseList" aria-label="Lista utajnionych spraw"></section>
+      <p class="archive-foot">Połączenie szyfrowane · Operator: śledczy terenowy · Sesja lokalna</p>
+    </div>
+  </main>
 
-    <section class="paper" id="caseFile">
-
-      <!-- ============================================================
-           ZAGADKA 1: Telegram ze Scotland Yardu
-           Hasło: KRUK
-           ============================================================ -->
-      <article class="chapter active" data-chapter="0" data-answer="kruk">
-        <span class="chapter-number">Rozdział I · Telegram</span>
-        <h2>Posłaniec we mgle</h2>
-        <p class="location">Baker Street 221B, wtorek, godzina 6:40</p>
-        <p class="story">Inspektor Lestrade zjawia się przed świtem. Z tajnego archiwum Scotland Yardu zniknęła kartoteka agentów. Na biurku pozostał tylko telegram, którego każde zdanie brzmi podejrzanie zwyczajnie.</p>
-        <div class="clue acrostic">
-          <span><b>K</b>areta czekała przed północą.</span>
-          <span><b>R</b>zeka skryła ślady przewoźnika.</span>
-          <span><b>U</b>liczny gaz zgasł dokładnie o dwunastej.</span>
-          <span><b>K</b>lucz pozostał po wewnętrznej stronie drzwi.</span>
-        </div>
-        <p class="note">Holmes: „Gdy wiadomość donikąd nie prowadzi, Watsonie, zacznij od początku każdej myśli.”</p>
-        <div class="answer-box">
-          <label for="answer-0">Wpisz znak rozpoznawczy złodzieja</label>
-          <input class="answer" id="answer-0" autocomplete="off" placeholder="Twoje hasło…">
-          <button class="submit" type="button">Sprawdź trop</button>
-          <p class="feedback" aria-live="polite"></p>
-        </div>
-        <div class="seal">SCOTLAND<br>YARD</div>
-      </article>
-
-      <!-- ============================================================
-           ZAGADKA 2: Szyfr Cezara
-           Hasło: SKRZYPCE
-           ============================================================ -->
-      <article class="chapter" data-chapter="1" data-answer="skrzypce">
-        <span class="chapter-number">Rozdział II · Mieszkanie podejrzanego</span>
-        <h2>Pokój bez muzyki</h2>
-        <p class="location">Whitechapel, Hanbury Street 14, godzina 9:15</p>
-        <p class="story">W pustym pokoju „Kruka” znajduje się pasek papieru i rzymska moneta z cyfrą III. Holmes przesuwa każdą literę wiadomości o trzy miejsca wstecz w alfabecie.</p>
-        <div class="clue">
-          <div class="cipher">V N U C B S F H</div>
-        </div>
-        <p class="note">Wskazówka: alfabet bez polskich znaków. Cofnij każdą literę o 3: D → A, E → B…</p>
-        <div class="answer-box">
-          <label for="answer-1">Jaki przedmiot wskazuje szyfr?</label>
-          <input class="answer" id="answer-1" autocomplete="off" placeholder="Twoje hasło…">
-          <button class="submit" type="button">Sprawdź trop</button>
-          <p class="feedback" aria-live="polite"></p>
-        </div>
-        <div class="seal">DOWÓD<br>NR 17</div>
-      </article>
-
-      <!-- ============================================================
-           ZAGADKA 3: Nuty i liczby
-           Hasło: 221B
-           ============================================================ -->
-      <article class="chapter" data-chapter="2" data-answer="221b">
-        <span class="chapter-number">Rozdział III · Futerał</span>
-        <h2>Melodia adresów</h2>
-        <p class="location">Hanbury Street 14, kilka minut później</p>
-        <p class="story">W futerale skrzypiec ukryto cztery symbole zapisane innym atramentem. Holmes zauważa, że pierwsze trzy są cyframi rzymskimi, a ostatni wskazuje literę.</p>
-        <div class="clue">
-          <div class="cipher">II &nbsp;·&nbsp; II &nbsp;·&nbsp; I &nbsp;·&nbsp; Baker<sup>1</sup></div>
-        </div>
-        <p class="note">Wskazówka: zamień cyfry rzymskie na arabskie, a z nazwy ulicy wybierz pierwszą literę. Wynik jest londyńskim adresem.</p>
-        <div class="answer-box">
-          <label for="answer-2">Dokąd prowadzi trop?</label>
-          <input class="answer" id="answer-2" autocomplete="off" placeholder="Np. 123A…">
-          <button class="submit" type="button">Sprawdź trop</button>
-          <p class="feedback" aria-live="polite"></p>
-        </div>
-        <div class="seal">TAJNE<br>AKTA</div>
-      </article>
-
-      <!-- ============================================================
-           ZAGADKA 4: Kod książkowy
-           Hasło: MORIARTY
-           ============================================================ -->
-      <article class="chapter" data-chapter="3" data-answer="moriarty">
-        <span class="chapter-number">Rozdział IV · Ukryta skrytka</span>
-        <h2>Osiem nazwisk</h2>
-        <p class="location">Baker Street 221B, godzina 13:05</p>
-        <p class="story">Za luźną deską Holmes odnajduje wykaz ośmiu świadków. Obok każdego nazwiska widnieje liczba. „Proste zamki bywają najlepsze” — mówi, wybierając z każdego nazwiska wskazaną literę.</p>
-        <div class="clue">
-          <div class="cipher" style="font-size:clamp(.9rem,3.6vw,1.25rem);text-align:left">
-            1. <u>M</u>urray [1]<br>
-            2. Hobbs [2]<br>
-            3. Parker [3]<br>
-            4. Finch [2]<br>
-            5. Adler [1]<br>
-            6. Carter [3]<br>
-            7. Tate [1]<br>
-            8. Gray [4]
-          </div>
-        </div>
-        <p class="note">Wskazówka: [3] oznacza trzecią literę nazwiska. Zapisz wszystkie po kolei.</p>
-        <div class="answer-box">
-          <label for="answer-3">Kto kieruje kradzieżą?</label>
-          <input class="answer" id="answer-3" autocomplete="off" placeholder="Nazwisko…">
-          <button class="submit" type="button">Sprawdź trop</button>
-          <p class="feedback" aria-live="polite"></p>
-        </div>
-        <div class="seal">ŚCIŚLE<br>TAJNE</div>
-      </article>
-
-      <!-- ============================================================
-           ZAGADKA 5: Lustro Irene Adler
-           Hasło: IRENE
-           ============================================================ -->
-      <article class="chapter" data-chapter="4" data-answer="irene">
-        <span class="chapter-number">Rozdział V · Ostatnia wiadomość</span>
-        <h2>Kobieta za lustrem</h2>
-        <p class="location">Opuszczony teatr, Covent Garden, godzina 23:50</p>
-        <p class="story">Moriarty zastawił pułapkę, lecz kartoteki już nie ma. Na zakurzonym lustrze ktoś napisał pięć grup kresek. Holmes odczytuje je jako numery liter alfabetu.</p>
-        <div class="clue">
-          <div class="cipher">9 &nbsp;·&nbsp; 18 &nbsp;·&nbsp; 5 &nbsp;·&nbsp; 14 &nbsp;·&nbsp; 5</div>
-        </div>
-        <p class="note">Wskazówka: A = 1, B = 2, C = 3… Kto przechytrzył profesora i ocalił akta?</p>
-        <div class="answer-box">
-          <label for="answer-4">Podaj imię tajemniczej wybawicielki</label>
-          <input class="answer" id="answer-4" autocomplete="off" placeholder="Imię…">
-          <button class="submit" type="button">Zamknij sprawę</button>
-          <p class="feedback" aria-live="polite"></p>
-        </div>
-        <div class="seal">OSTATNI<br>TROP</div>
-      </article>
-
-      <!-- EKRAN ZAKOŃCZENIA -->
-      <article class="chapter" data-chapter="5">
-        <div class="complete-card">
-          <span class="chapter-number">Raport końcowy</span>
-          <h2>Sprawa rozwiązana</h2>
-          <div class="big-seal">ZAMKNIĘTE<br>221B</div>
-          <p class="story" style="max-width:590px;margin:0 auto">Kartoteka wróciła do Scotland Yardu, Moriarty został zmuszony do odwrotu, a pani Irene Adler — jak zwykle — zniknęła przed przybyciem policji.</p>
-          <p class="note">„Eliminuj niemożliwe, a to, co pozostanie, musi być prawdą.”</p>
-          <button class="reset" id="resetGame" type="button">Wyczyść akta i rozpocznij od nowa</button>
-        </div>
-      </article>
+  <!-- MODAL: KOD WYBRANYCH AKT -->
+  <div class="modal-layer" id="caseModal" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" type="button" aria-label="Zamknij">×</button>
+      <div class="modal-mark" aria-hidden="true"><span>!</span></div>
+      <h2 id="modalTitle">Akta zabezpieczone</h2>
+      <p class="modal-case" id="modalCaseNumber"></p>
+      <form id="caseCodeForm" novalidate>
+        <label class="field-label" for="caseCodeInput">Wprowadź kod akt</label>
+        <input class="secure-input" id="caseCodeInput" type="password" autocomplete="off" spellcheck="false" placeholder="Kod przypisany do rekordu">
+        <button class="primary-button" type="submit">Odblokuj</button>
+        <p class="modal-message" id="caseCodeMessage" aria-live="polite"></p>
+      </form>
     </section>
+  </div>
 
-    <footer class="case-footer">Archiwum 221B · Postęp jest zapisywany wyłącznie na tym urządzeniu</footer>
+  <!-- EKRAN 4: WPROWADZENIE FABULARNE -->
+  <main class="screen case-screen" id="caseScreen" hidden>
+    <header class="system-header">
+      <div class="system-brand">
+        <div class="mini-crest" aria-hidden="true">SY</div>
+        <div>
+          <p class="system-name">AKTA 221B/1897</p>
+          <p class="system-path">/CLASSIFIED/ACTIVE_INVESTIGATION</p>
+        </div>
+      </div>
+      <div class="header-actions"><button class="icon-button sound-toggle" type="button">Dźwięk: wył.</button></div>
+    </header>
+
+    <div class="case-container">
+      <article class="dossier">
+        <p class="dossier-label">SPRAWA 221B/1897 · ŚCIŚLE TAJNE</p>
+        <h1>Zaginięcie Edwarda Baskerville'a</h1>
+        <p class="dossier-meta">LONDYN · ROK 1897 · STATUS: ŚLEDZTWO OTWARTE</p>
+
+        <div class="narrative">
+          <p>Do Sherlocka Holmesa zgłasza się sir Arthur Baskerville. Jego syn, Edward Baskerville, zaginął trzy dni wcześniej. Policja prowadziła poszukiwania, lecz nie odnalazła:</p>
+          <ul class="evidence-list">
+            <li>ciała,</li>
+            <li>śladów walki,</li>
+            <li>porywaczy.</li>
+          </ul>
+          <p>Na biurku Edwarda znaleziono jedynie kartkę:</p>
+          <blockquote class="found-note">„Prawda ukryta jest tam, gdzie kończy się światło.”</blockquote>
+          <p>Kilka godzin później Sherlock otrzymuje anonimowy list.</p>
+          <blockquote class="found-note">
+            Panie Holmes,<br><br>
+            jeśli chce Pan odnaleźć chłopca żywego,<br>
+            proszę nie angażować policji.<br><br>
+            Przygotowałem dla Pana serię prób.<br>
+            Jeśli okaże się Pan godny,<br>
+            pozna Pan prawdę.<br><br>
+            Jeśli nie,<br>
+            Edward nigdy nie wróci do domu.
+            <span class="signature">— Przyjaciel</span>
+          </blockquote>
+        </div>
+        <button class="begin-button" id="beginInvestigation" type="button">Rozpocznij śledztwo</button>
+      </article>
+    </div>
+  </main>
+
+  <!-- EKRAN 5: KOLEJNE ETAPY I KOPERTY -->
+  <main class="screen investigation-screen" id="investigationScreen" hidden>
+    <header class="system-header">
+      <div class="system-brand">
+        <div class="mini-crest" aria-hidden="true">SY</div>
+        <div>
+          <p class="system-name">ŚLEDZTWO 221B/1897</p>
+          <p class="system-path">/FIELD_OPERATION/EVIDENCE_SEQUENCE</p>
+        </div>
+      </div>
+      <div class="header-actions"><button class="icon-button sound-toggle" type="button">Dźwięk: wył.</button></div>
+    </header>
+
+    <div class="investigation-container">
+      <section class="progress-panel" aria-label="Postęp śledztwa">
+        <div>
+          <div class="progress-labels"><span>POSTĘP ŚLEDZTWA</span><span id="progressPercent">0%</span></div>
+          <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <div class="progress-count" id="progressCount">UKOŃCZONO 0 / 10</div>
+      </section>
+      <nav class="stage-nav" id="stageNav" aria-label="Etapy śledztwa"></nav>
+      <section id="stageContent"></section>
+    </div>
   </main>
 
   <script>
-    /* ================================================================
-       USTAWIENIA GRY
-       Aby zmienić hasło, edytuj atrybut data-answer przy danej zagadce.
-       Odpowiedzi nie rozróżniają wielkości liter, spacji ani polskich znaków.
-       ================================================================ */
-    const chapters = [...document.querySelectorAll('.chapter')];
-    const puzzleCount = 5;
-    const storageKey = 'archiwum221b-progress';
-    const tabs = document.getElementById('tabs');
-    const progressBar = document.getElementById('progressBar');
-    const progressText = document.getElementById('progressText');
+    "use strict";
 
-    let unlocked = Math.min(Number(localStorage.getItem(storageKey)) || 0, puzzleCount);
-    let current = unlocked === puzzleCount ? puzzleCount : unlocked;
+    /* ==================================================================
+       NAJWAŻNIEJSZE USTAWIENIA — ZMIENIAJ JE TUTAJ
+       ================================================================== */
 
-    function normalize(text) {
-      return text
-        .toLowerCase()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .replace(/[^a-z0-9]/g, '');
-    }
+    // Kod wejścia do całego Archiwum Specjalnego.
+    const ARCHIVE_ACCESS_CODE = "YARD1897";
 
-    function buildTabs() {
-      tabs.innerHTML = '';
-      for (let i = 0; i < puzzleCount; i++) {
-        const button = document.createElement('button');
-        button.className = 'tab';
-        button.type = 'button';
-        button.disabled = i > unlocked;
-        button.setAttribute('aria-label', i > unlocked ? `Rozdział ${i + 1}, zablokowany` : `Otwórz rozdział ${i + 1}`);
-        button.innerHTML = i > unlocked ? `<span class="lock">◆</span>` : `${i + 1}`;
-        button.addEventListener('click', () => showChapter(i));
-        tabs.appendChild(button);
+    // Kod otwierający jedyną prawdziwą sprawę 221B/1897.
+    const TRUE_CASE_CODE = "BASKERVILLE";
+
+    // Dźwięk domyślnie wyłączony. Zmień na true, jeśli ma startować włączony.
+    const SOUND_ENABLED_BY_DEFAULT = false;
+
+    // Wszystkie sprawy widoczne w bazie. Tylko rekord z active: true można otworzyć.
+    const CASES = [
+      {
+        number: "17/1887",
+        year: "1887",
+        title: "Kradzież Klejnotów Korony",
+        description: "Raport zamknięty. Materiał dowodowy objęty klauzulą królewską.",
+        active: false
+      },
+      {
+        number: "42/1892",
+        year: "1892",
+        title: "Zniknięcie Lorda Harringtona",
+        description: "Akta osobowe i zeznania świadków — poziom dostępu IV.",
+        active: false
+      },
+      {
+        number: "103/1895",
+        year: "1895",
+        title: "Incydent w Whitechapel",
+        description: "Dokumentacja operacyjna wydziału dochodzeniowego.",
+        active: false
+      },
+      {
+        number: "221B/1897",
+        year: "1897",
+        title: "Akta Specjalne",
+        description: "Śledztwo aktywne. Dostęp wyłącznie dla śledczych specjalnych.",
+        active: true
+      },
+      {
+        number: "09/1898",
+        year: "1898",
+        title: "Tajemnica Czarnego Pociągu",
+        description: "Rekord częściowo uszkodzony. Kopia archiwalna zabezpieczona.",
+        active: false
       }
-      updateTabs();
+    ];
+
+    /* ==================================================================
+       ETAPY GRY — JEDYNE MIEJSCE, KTÓRE TRZEBA EDYTOWAĆ
+
+       Aby dodać etap: skopiuj jeden obiekt i zmień jego pola.
+       title       — tytuł widoczny na ekranie,
+       story       — fragment fabularny,
+       instruction — informacja o zawartości koperty / polecenie,
+       answer      — poprawne hasło (wielkość liter i spacje nie mają znaczenia),
+       success     — komunikat po poprawnej odpowiedzi.
+
+       Obecne hasła są TECHNICZNYMI HASŁAMI TESTOWYMI, nie zagadkami.
+       Zastąp je własnymi po przygotowaniu materiałów do kopert.
+       ================================================================== */
+    const STAGES = [
+      {
+        title: "Pierwszy ślad",
+        story: "Holmes rozpoczyna analizę materiału pozostawionego w pokoju Edwarda. Pierwszy pakiet dowodowy został przygotowany do oględzin.",
+        instruction: "Przeanalizuj dokumenty znajdujące się w kopercie. Wpisz ustalone hasło operacyjne.",
+        answer: "KOPERTA01",
+        success: "Ślad potwierdzony. System udostępnia kolejny pakiet dowodowy."
+      },
+      {
+        title: "Zeznanie świadka",
+        story: "Nowe zeznanie podważa oficjalną wersję wydarzeń. Holmes poleca sprawdzić każdą rozbieżność.",
+        instruction: "Odczytaj materiały świadka i ustal rozwiązanie etapu.",
+        answer: "KOPERTA02",
+        success: "Zeznanie zweryfikowane. Dodano nowy wpis do osi czasu."
+      },
+      {
+        title: "Mapa nocnego Londynu",
+        story: "Trasa zaginionego urywa się w dzielnicy, której policyjne patrole unikają po zmroku.",
+        instruction: "Skorzystaj z mapy i notatek umieszczonych w kopercie.",
+        answer: "KOPERTA03",
+        success: "Lokalizacja przyjęta. Uruchomiono analizę kolejnego tropu."
+      },
+      {
+        title: "Wiadomość bez nadawcy",
+        story: "Do Baker Street dociera przesyłka bez pieczęci pocztowej. Jej treść może pochodzić od porywacza.",
+        instruction: "Zbadaj wiadomość z koperty i podaj odczytane hasło.",
+        answer: "KOPERTA04",
+        success: "Wiadomość odszyfrowana. Nadawca pozostawił kolejny ślad."
+      },
+      {
+        title: "Fotografia z dworca",
+        story: "Na jednej z policyjnych fotografii Watson dostrzega szczegół przeoczony podczas pierwszych oględzin.",
+        instruction: "Przyjrzyj się fotografiom i dokumentom w pakiecie dowodowym.",
+        answer: "KOPERTA05",
+        success: "Obserwacja potwierdzona. Baza powiązała dowód z następnym rekordem."
+      },
+      {
+        title: "Fragment pamiętnika",
+        story: "Odnaleziony fragment zapisków Edwarda sugeruje, że znał swojego prześladowcę.",
+        instruction: "Przeanalizuj kartę pamiętnika i ustal brakującą informację.",
+        answer: "KOPERTA06",
+        success: "Wpis z pamiętnika dodano do akt. Profil podejrzanego zaktualizowany."
+      },
+      {
+        title: "Fałszywy trop",
+        story: "Lestrade przynosi dowód, który wydaje się rozstrzygający. Holmes podejrzewa jednak starannie przygotowane oszustwo.",
+        instruction: "Sprawdź materiały z koperty i oddziel fakt od mistyfikacji.",
+        answer: "KOPERTA07",
+        success: "Fałszywy trop odrzucony. Kierunek śledztwa został skorygowany."
+      },
+      {
+        title: "Archiwum doktora Mortimera",
+        story: "Stara kartoteka rodzinna ujawnia związek pomiędzy zniknięciem a wydarzeniem sprzed wielu lat.",
+        instruction: "Porównaj dokumenty archiwalne znajdujące się w kopercie.",
+        answer: "KOPERTA08",
+        success: "Powiązanie potwierdzone. Brakuje już tylko dwóch elementów sprawy."
+      },
+      {
+        title: "Ostatnie ostrzeżenie",
+        story: "Anonimowy przeciwnik wie, że Holmes jest blisko. Ostatnia wiadomość ma powstrzymać śledczych przed dalszym działaniem.",
+        instruction: "Otwórz zabezpieczoną kopertę i rozwiąż zawarte w niej zadanie.",
+        answer: "KOPERTA09",
+        success: "Ostrzeżenie zignorowane. Ustalono miejsce finałowej operacji."
+      },
+      {
+        title: "Prawda o Edwardzie",
+        story: "Wszystkie tropy prowadzą do jednego miejsca. Ostatni pakiet dowodowy zdecyduje o wyniku śledztwa.",
+        instruction: "Połącz zebrane informacje z materiałem w ostatniej kopercie.",
+        answer: "KOPERTA10",
+        success: "Tożsamość i przebieg zdarzeń potwierdzone. Śledztwo zakończone."
+      }
+    ];
+
+    /* ==================================================================
+       SILNIK GRY — ZWYKLE NIE TRZEBA NICZEGO ZMIENIAĆ PONIŻEJ
+       ================================================================== */
+
+    const STORAGE_KEY = "scotland-yard-221b-progress";
+    const screens = {
+      login: document.getElementById("loginScreen"),
+      loader: document.getElementById("loaderScreen"),
+      archive: document.getElementById("archiveScreen"),
+      case: document.getElementById("caseScreen"),
+      investigation: document.getElementById("investigationScreen")
+    };
+
+    let selectedCase = null;
+    let soundEnabled = SOUND_ENABLED_BY_DEFAULT;
+    let completedStages = Math.min(Number(localStorage.getItem(STORAGE_KEY)) || 0, STAGES.length);
+    let currentStage = Math.min(completedStages, Math.max(0, STAGES.length - 1));
+    let audioContext = null;
+
+    function normalize(value) {
+      return String(value)
+        .trim()
+        .toLocaleLowerCase("pl")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]/g, "");
     }
 
-    function updateTabs() {
-      [...tabs.children].forEach((tab, i) => {
-        tab.disabled = i > unlocked;
-        tab.classList.toggle('active', i === current && current < puzzleCount);
-        tab.innerHTML = i > unlocked ? '<span class="lock">◆</span>' : (i < unlocked ? '✓' : `${i + 1}`);
+    function wait(milliseconds) {
+      return new Promise(resolve => window.setTimeout(resolve, milliseconds));
+    }
+
+    function playTone(type = "click") {
+      if (!soundEnabled) return;
+      try {
+        audioContext ||= new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        const now = audioContext.currentTime;
+        const settings = {
+          click: [260, .035, .025],
+          success: [560, .12, .045],
+          error: [120, .16, .04]
+        }[type];
+        oscillator.type = type === "error" ? "sawtooth" : "sine";
+        oscillator.frequency.setValueAtTime(settings[0], now);
+        if (type === "success") oscillator.frequency.exponentialRampToValueAtTime(880, now + settings[1]);
+        gain.gain.setValueAtTime(settings[2], now);
+        gain.gain.exponentialRampToValueAtTime(.0001, now + settings[1]);
+        oscillator.connect(gain).connect(audioContext.destination);
+        oscillator.start(now);
+        oscillator.stop(now + settings[1]);
+      } catch (_) {
+        // Dźwięk jest dodatkiem — gra działa także bez obsługi Web Audio.
+      }
+    }
+
+    function updateSoundButtons() {
+      document.querySelectorAll(".sound-toggle").forEach(button => {
+        button.textContent = `Dźwięk: ${soundEnabled ? "wł." : "wył."}`;
+        button.setAttribute("aria-pressed", String(soundEnabled));
       });
-      progressBar.style.width = `${(unlocked / puzzleCount) * 100}%`;
-      progressText.textContent = `${unlocked} / ${puzzleCount}`;
     }
 
-    function showChapter(index) {
-      if (index > unlocked || index === current) return;
-      const old = chapters[current];
-      old.classList.add('leaving');
-      old.classList.remove('active');
+    async function showScreen(name) {
+      const current = Object.values(screens).find(screen => !screen.hidden);
+      if (current === screens[name]) return;
 
-      window.setTimeout(() => {
-        old.classList.remove('leaving');
-        current = index;
-        chapters.forEach((chapter, i) => chapter.classList.toggle('active', i === current));
-        updateTabs();
-        document.getElementById('caseFile').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 300);
-    }
-
-    function checkAnswer(chapter) {
-      const input = chapter.querySelector('.answer');
-      const feedback = chapter.querySelector('.feedback');
-      const expected = normalize(chapter.dataset.answer);
-      const given = normalize(input.value);
-      const index = Number(chapter.dataset.chapter);
-
-      feedback.className = 'feedback';
-
-      if (!given) {
-        feedback.textContent = 'Najpierw wpisz odpowiedź, detektywie.';
-        feedback.classList.add('error');
-        input.focus();
-        return;
+      if (current) {
+        current.classList.remove("screen-enter");
+        current.classList.add("screen-exit");
+        await wait(380);
+        current.hidden = true;
+        current.classList.remove("screen-exit");
       }
 
-      if (given !== expected) {
-        feedback.textContent = 'Ten trop prowadzi donikąd. Przyjrzyj się dowodowi jeszcze raz.';
-        feedback.classList.add('error');
+      screens[name].hidden = false;
+      screens[name].classList.add("screen-enter");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    async function runLoader(lines, destination, onComplete) {
+      await showScreen("loader");
+      const lineContainer = document.getElementById("loaderLines");
+      const fill = document.getElementById("loaderFill");
+      lineContainer.innerHTML = "";
+      fill.style.width = "0%";
+
+      for (let index = 0; index < lines.length; index += 1) {
+        const line = document.createElement("p");
+        line.className = "loader-line";
+        line.textContent = lines[index];
+        lineContainer.appendChild(line);
+        requestAnimationFrame(() => line.classList.add("visible"));
+        fill.style.width = `${((index + 1) / lines.length) * 100}%`;
+        playTone("click");
+        await wait(650);
+        line.classList.add("done");
+      }
+
+      playTone("success");
+      await wait(450);
+      if (onComplete) onComplete();
+      await showScreen(destination);
+    }
+
+    // Autoryzacja do głównego archiwum.
+    document.getElementById("loginForm").addEventListener("submit", async event => {
+      event.preventDefault();
+      const input = document.getElementById("accessInput");
+      const feedback = document.getElementById("loginFeedback");
+      const button = document.getElementById("loginButton");
+      feedback.className = "auth-feedback";
+
+      if (normalize(input.value) !== normalize(ARCHIVE_ACCESS_CODE)) {
+        feedback.textContent = "ODMOWA DOSTĘPU · Dane uwierzytelniające nie zostały rozpoznane.";
+        feedback.classList.add("error");
+        playTone("error");
         input.select();
         return;
       }
 
-      feedback.textContent = 'Trafna dedukcja. Kolejny rozdział został odblokowany.';
-      feedback.classList.add('success');
-      input.disabled = true;
+      button.disabled = true;
+      await runLoader([
+        "ŁĄCZENIE Z ARCHIWUM...",
+        "ODSZYFROWYWANIE PLIKÓW...",
+        "WERYFIKACJA UPRAWNIEŃ...",
+        "DOSTĘP PRZYZNANY"
+      ], "archive", renderCases);
+      button.disabled = false;
+      input.value = "";
+    });
 
-      if (index >= unlocked) {
-        unlocked = Math.min(index + 1, puzzleCount);
-        localStorage.setItem(storageKey, unlocked);
-      }
-      buildTabs();
-      window.setTimeout(() => showChapter(index + 1), 900);
+    // Budowanie listy spraw na podstawie tablicy CASES.
+    function renderCases() {
+      const list = document.getElementById("caseList");
+      list.innerHTML = CASES.map((caseData, index) => `
+        <article class="case-card">
+          <div class="case-number">SPRAWA ${caseData.number}<span class="case-year">ROK ${caseData.year}</span></div>
+          <div>
+            <h3 class="case-title">„${caseData.title}”</h3>
+            <p class="case-description">${caseData.description}</p>
+          </div>
+          <button class="file-button" type="button" data-case-index="${index}">Otwórz akta</button>
+        </article>
+      `).join("");
+
+      list.querySelectorAll("[data-case-index]").forEach(button => {
+        button.addEventListener("click", () => openCaseModal(Number(button.dataset.caseIndex)));
+      });
     }
 
-    document.querySelectorAll('.submit').forEach(button => {
-      const chapter = button.closest('.chapter');
-      button.addEventListener('click', () => checkAnswer(chapter));
-      chapter.querySelector('.answer').addEventListener('keydown', event => {
-        if (event.key === 'Enter') checkAnswer(chapter);
+    function openCaseModal(index) {
+      selectedCase = CASES[index];
+      document.getElementById("modalCaseNumber").textContent = `SPRAWA ${selectedCase.number}`;
+      document.getElementById("caseCodeInput").value = "";
+      const message = document.getElementById("caseCodeMessage");
+      message.textContent = "Poziom zabezpieczeń: TAJNE · Próby dostępu są rejestrowane.";
+      message.className = "modal-message";
+      document.getElementById("caseModal").hidden = false;
+      window.setTimeout(() => document.getElementById("caseCodeInput").focus(), 100);
+      playTone("click");
+    }
+
+    function closeCaseModal() {
+      document.getElementById("caseModal").hidden = true;
+      selectedCase = null;
+    }
+
+    document.getElementById("modalClose").addEventListener("click", closeCaseModal);
+    document.getElementById("caseModal").addEventListener("click", event => {
+      if (event.target.id === "caseModal") closeCaseModal();
+    });
+
+    // Ochrona akt. Fałszywe sprawy odrzucają KAŻDY kod.
+    document.getElementById("caseCodeForm").addEventListener("submit", async event => {
+      event.preventDefault();
+      if (!selectedCase) return;
+
+      const input = document.getElementById("caseCodeInput");
+      const message = document.getElementById("caseCodeMessage");
+      const isCorrect = selectedCase.active && normalize(input.value) === normalize(TRUE_CASE_CODE);
+
+      if (!isCorrect) {
+        const denialMessages = [
+          "ODMOWA DOSTĘPU\nNieprawidłowy poziom autoryzacji. Próba została odnotowana.",
+          "UWAGA\nKod dostępu niezgodny z numerem sprawy."
+        ];
+        message.innerText = denialMessages[Math.floor(Math.random() * denialMessages.length)];
+        message.className = "modal-message denied";
+        playTone("error");
+        input.select();
+        return;
+      }
+
+      message.innerText = "AUTORYZACJA POTWIERDZONA\nPoziom dostępu: ŚLEDCZY SPECJALNY";
+      message.className = "modal-message granted";
+      playTone("success");
+      await wait(900);
+      closeCaseModal();
+      await runLoader([
+        "AUTORYZACJA POTWIERDZONA...",
+        "POZIOM DOSTĘPU: ŚLEDCZY SPECJALNY",
+        "OTWIERANIE AKT..."
+      ], "case");
+    });
+
+    document.getElementById("beginInvestigation").addEventListener("click", async () => {
+      playTone("click");
+      renderInvestigation();
+      await showScreen("investigation");
+    });
+
+    // Tworzy nawigację etapów i aktualizuje licznik postępu.
+    function renderInvestigation() {
+      const percent = STAGES.length ? Math.round((completedStages / STAGES.length) * 100) : 100;
+      document.getElementById("progressFill").style.width = `${percent}%`;
+      document.getElementById("progressPercent").textContent = `${percent}%`;
+      document.getElementById("progressCount").textContent = `UKOŃCZONO ${completedStages} / ${STAGES.length}`;
+
+      const nav = document.getElementById("stageNav");
+      nav.innerHTML = STAGES.map((_, index) => {
+        const unlocked = index <= completedStages;
+        const complete = index < completedStages;
+        return `<button class="stage-dot ${index === currentStage ? "active" : ""} ${complete ? "complete" : ""}"
+          type="button" data-stage="${index}" ${unlocked ? "" : "disabled"}
+          aria-label="Etap ${index + 1}${complete ? ", ukończony" : unlocked ? "" : ", zablokowany"}">
+          ${complete ? "✓" : String(index + 1).padStart(2, "0")}
+        </button>`;
+      }).join("");
+
+      nav.querySelectorAll("[data-stage]").forEach(button => {
+        button.addEventListener("click", () => {
+          currentStage = Number(button.dataset.stage);
+          playTone("click");
+          renderInvestigation();
+        });
+      });
+
+      renderStage();
+    }
+
+    // Wyświetla bieżący etap albo ekran końcowy.
+    function renderStage() {
+      const container = document.getElementById("stageContent");
+
+      if (completedStages >= STAGES.length) {
+        container.innerHTML = `
+          <article class="stage-card final-card" data-watermark="221B">
+            <div class="final-inner">
+              <div class="final-seal">ŚLEDZTWO<br>ZAKOŃCZONE</div>
+              <p class="stage-number">RAPORT KOŃCOWY · SPRAWA 221B/1897</p>
+              <h2>Akta kompletne</h2>
+              <p>Wszystkie pakiety dowodowe zostały zweryfikowane. Pełne zakończenie fabularne możesz wpisać tutaj po przygotowaniu właściwych zagadek.</p>
+              <button class="text-button" id="resetProgress" type="button">Wyczyść postęp śledztwa</button>
+            </div>
+          </article>`;
+        document.getElementById("resetProgress").addEventListener("click", resetProgress);
+        return;
+      }
+
+      const stage = STAGES[currentStage];
+      const alreadyComplete = currentStage < completedStages;
+      container.innerHTML = `
+        <article class="stage-card" data-watermark="${String(currentStage + 1).padStart(2, "0")}">
+          ${alreadyComplete ? '<div class="stage-complete-stamp">DOWÓD<br>ZWERYFIKOWANY</div>' : ""}
+          <p class="stage-classification">KLASYFIKACJA: ŚCIŚLE TAJNE · PAKIET DOWODOWY</p>
+          <p class="stage-number">ETAP ${String(currentStage + 1).padStart(2, "0")} / ${String(STAGES.length).padStart(2, "0")}</p>
+          <h2 class="stage-title">${stage.title}</h2>
+          <p class="stage-story">${stage.story}</p>
+          <div class="envelope-order">
+            <strong>OTWÓRZ KOPERTĘ NR ${currentStage + 1}</strong>
+            <span>${stage.instruction}</span>
+          </div>
+          ${alreadyComplete ? `
+            <p class="stage-feedback success">ETAP UKOŃCZONY · Materiał dowodowy znajduje się w aktach.</p>
+          ` : `
+            <form class="stage-form" id="stageForm" novalidate>
+              <label class="field-label" for="stageAnswer">Hasło ustalone na podstawie materiałów</label>
+              <input class="secure-input" id="stageAnswer" autocomplete="off" spellcheck="false" placeholder="Wprowadź rozwiązanie">
+              <button class="primary-button" type="submit">Zweryfikuj</button>
+              <p class="stage-feedback" id="stageFeedback" aria-live="polite"></p>
+            </form>
+          `}
+        </article>`;
+
+      if (!alreadyComplete) {
+        document.getElementById("stageForm").addEventListener("submit", verifyStageAnswer);
+      }
+    }
+
+    function verifyStageAnswer(event) {
+      event.preventDefault();
+      const stage = STAGES[currentStage];
+      const input = document.getElementById("stageAnswer");
+      const feedback = document.getElementById("stageFeedback");
+
+      if (normalize(input.value) !== normalize(stage.answer)) {
+        feedback.textContent = "WERYFIKACJA NEGATYWNA · Odpowiedź nie zgadza się z materiałem dowodowym. Sprawdź dokumenty ponownie.";
+        feedback.className = "stage-feedback error";
+        playTone("error");
+        input.select();
+        return;
+      }
+
+      feedback.textContent = `WERYFIKACJA POZYTYWNA · ${stage.success}`;
+      feedback.className = "stage-feedback success";
+      input.disabled = true;
+      event.currentTarget.querySelector("button").disabled = true;
+      playTone("success");
+
+      completedStages = Math.max(completedStages, currentStage + 1);
+      localStorage.setItem(STORAGE_KEY, String(completedStages));
+
+      window.setTimeout(() => {
+        if (completedStages < STAGES.length) currentStage = completedStages;
+        renderInvestigation();
+        document.querySelector(".progress-panel").scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 1200);
+    }
+
+    function resetProgress() {
+      localStorage.removeItem(STORAGE_KEY);
+      completedStages = 0;
+      currentStage = 0;
+      renderInvestigation();
+      playTone("click");
+    }
+
+    document.getElementById("logoutButton").addEventListener("click", async () => {
+      playTone("click");
+      await showScreen("login");
+      document.getElementById("accessInput").focus();
+    });
+
+    document.querySelectorAll(".sound-toggle").forEach(button => {
+      button.addEventListener("click", () => {
+        soundEnabled = !soundEnabled;
+        updateSoundButtons();
+        playTone("success");
       });
     });
 
-    document.getElementById('resetGame').addEventListener('click', () => {
-      localStorage.removeItem(storageKey);
-      unlocked = 0;
-      document.querySelectorAll('.answer').forEach(input => {
-        input.value = '';
-        input.disabled = false;
-      });
-      document.querySelectorAll('.feedback').forEach(item => item.textContent = '');
-      current = 5;
-      buildTabs();
-      showChapter(0);
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && !document.getElementById("caseModal").hidden) closeCaseModal();
     });
 
-    buildTabs();
-    chapters.forEach((chapter, i) => chapter.classList.toggle('active', i === current));
-    updateTabs();
+    updateSoundButtons();
   </script>
 </body>
 </html>
