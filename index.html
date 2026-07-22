@@ -455,8 +455,8 @@
       align-items: center;
       gap: .18em;
       color: rgba(48, 43, 38, .78);
-      font: 500 clamp(1.65rem, 8.8vw, 4.8rem)/.86 "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
-      letter-spacing: -.06em;
+      font: 600 clamp(.76rem, 3.05vw, 1.42rem)/.92 "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
+      letter-spacing: -.035em;
       white-space: nowrap;
       transform: translate(-50%, -50%) rotate(var(--note-rot));
       transform-origin: center;
@@ -467,8 +467,8 @@
 
     .ransom-pencil-arrow {
       display: inline-block;
-      width: 1.92em;
-      height: .92em;
+      width: 1.76em;
+      height: .94em;
       margin-left: -.08em;
       overflow: visible;
       color: rgba(48, 43, 38, .75);
@@ -479,7 +479,7 @@
     .ransom-pencil-arrow path {
       fill: none;
       stroke: currentColor;
-      stroke-width: 2.35;
+      stroke-width: 3.65;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
@@ -1160,6 +1160,142 @@
       margin: 0;
     }
 
+    .evidence-final-button {
+      width: 100%;
+      margin-top: 9px;
+      padding: 10px 12px;
+      border: 1px solid rgba(132,190,126,.55);
+      color: #b9ddb3;
+      background: rgba(42,83,45,.28);
+      font: 700 .68rem/1.3 var(--mono);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .final-report-form {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .final-report-field {
+      display: grid;
+      gap: 7px;
+      padding: 13px;
+      border: 1px solid rgba(109,91,54,.35);
+      background: rgba(255,247,220,.28);
+    }
+
+    .final-report-field label {
+      color: #342717;
+      font: 700 .92rem/1.45 var(--serif);
+    }
+
+    .final-report-field small {
+      color: #5a4328;
+      font: 600 .76rem/1.4 var(--mono);
+    }
+
+    .final-report-field input {
+      width: 100%;
+      min-height: 48px;
+      padding: 11px 12px;
+      border: 1px solid rgba(59,43,22,.45);
+      border-radius: 2px;
+      color: #1f160c;
+      background: rgba(255,250,231,.74);
+      font: 700 1rem/1.2 var(--mono);
+    }
+
+    .final-report-field.invalid {
+      border-color: rgba(139,42,30,.75);
+      box-shadow: inset 0 0 0 1px rgba(139,42,30,.22);
+    }
+
+    .final-report-submit {
+      min-height: 52px;
+      border: 1px solid #6d5128;
+      color: #24190d;
+      background: linear-gradient(#d9bd7a, #aa8142);
+      font: 700 .78rem/1.3 var(--mono);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .case-final-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 10050;
+      display: grid;
+      place-items: center;
+      padding: max(18px, env(safe-area-inset-top)) 18px max(18px, env(safe-area-inset-bottom));
+      background: rgba(2,4,2,.9);
+      backdrop-filter: blur(8px);
+      animation: finalModalIn .5s ease both;
+    }
+
+    .case-final-card {
+      position: relative;
+      width: min(100%, 520px);
+      max-height: calc(100dvh - 36px);
+      overflow: auto;
+      padding: 27px 19px 22px;
+      border: 1px solid rgba(211,170,86,.55);
+      color: #e8dcc3;
+      background: linear-gradient(145deg, rgba(15,27,18,.99), rgba(5,7,5,.99));
+      box-shadow: 0 25px 80px rgba(0,0,0,.75), inset 0 0 55px rgba(130,90,34,.08);
+      text-align: center;
+    }
+
+    .case-final-card::before {
+      content: "SPRAWA ROZWIĄZANA";
+      display: block;
+      margin-bottom: 14px;
+      color: #8bc487;
+      font: 700 .7rem/1.3 var(--mono);
+      letter-spacing: .2em;
+    }
+
+    .case-final-card h2 {
+      margin: 0 0 14px;
+      color: #f0d69a;
+      font: 700 clamp(1.65rem, 8vw, 2.5rem)/1.08 var(--serif);
+    }
+
+    .case-final-card p {
+      margin: 12px 0;
+      font: 1rem/1.65 var(--serif);
+    }
+
+    .final-coordinates {
+      display: grid;
+      gap: 8px;
+      margin: 19px 0;
+      padding: 16px;
+      border: 1px solid rgba(211,170,86,.42);
+      background: rgba(0,0,0,.3);
+      color: #f0d69a;
+      font: 700 clamp(1.25rem, 8vw, 2rem)/1.2 var(--mono);
+      letter-spacing: .13em;
+    }
+
+    .case-final-close {
+      width: 100%;
+      min-height: 50px;
+      margin-top: 8px;
+      border: 1px solid rgba(211,170,86,.55);
+      color: #f0d69a;
+      background: rgba(118,82,35,.25);
+      font: 700 .72rem/1.3 var(--mono);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    @keyframes finalModalIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
     .digit-box {
       display: grid;
       place-items: center;
@@ -1492,7 +1628,7 @@
       font: .88rem/1.55 var(--serif);
     }
 
-    /* Ścieżka III: interaktywny pokój policyjny */
+    /* Teka III: interaktywny pokój policyjny */
     .police-material {
       margin: 18px 0 0;
       border: 1px solid rgba(199,155,78,.28);
@@ -1567,46 +1703,237 @@
       to { opacity: 1; transform: scale(1); filter: brightness(.96); }
     }
 
+    .police-board-focus {
+      padding: max(58px, env(safe-area-inset-top)) 0 max(188px, 25dvh);
+      touch-action: none;
+    }
+
     .police-board-canvas {
       position: relative;
-      width: min(100vw, 1000px);
-      max-height: 72dvh;
-      aspect-ratio: 4 / 3;
-      margin-bottom: 23dvh;
+      width: min(100vw, 1000px, calc(100dvh * 1.338));
+      aspect-ratio: 1456 / 1088;
+      overflow: hidden;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+      isolation: isolate;
     }
 
     .police-board-canvas > img {
       display: block;
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       user-select: none;
       -webkit-user-drag: none;
       animation: policeEvidenceIn .62s cubic-bezier(.18,.82,.18,1) both;
     }
 
     .police-board-lines,
-    .police-board-tokens {
+    .police-board-pins,
+    .police-board-handles {
       position: absolute;
-      inset: 4%;
+      inset: 0;
+    }
+
+    .police-board-lines {
+      z-index: 3;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
       pointer-events: none;
     }
 
-    .police-board-placeholder {
+    .board-string-shadow,
+    .board-string-main,
+    .board-string-glint {
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .board-string-shadow {
+      stroke: rgba(20, 11, 5, .72);
+      stroke-width: 7;
+      opacity: .78;
+      transform: translate(0, 2px);
+    }
+
+    .board-string-main {
+      stroke: var(--string-color);
+      stroke-width: 4.2;
+      filter: drop-shadow(0 1px 1px rgba(0,0,0,.55));
+    }
+
+    .board-string-glint {
+      stroke: rgba(255,255,255,.28);
+      stroke-width: 1;
+      opacity: .72;
+      transform: translate(0, -1px);
+    }
+
+    .police-board-pins {
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .police-board-pin {
+      position: absolute;
+      width: clamp(32px, 9.5vw, 48px);
+      height: clamp(32px, 9.5vw, 48px);
+      transform: translate(-50%, -50%);
+      margin: 0;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      pointer-events: auto;
+      touch-action: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .police-board-pin::after {
+      content: "";
       position: absolute;
       left: 50%;
       top: 50%;
-      width: min(76%, 520px);
-      transform: translate(-50%, -50%);
-      border: 1px dashed rgba(72,40,18,.48);
-      background: rgba(234,215,170,.1);
-      color: rgba(49,27,12,.72);
-      padding: 14px;
-      text-align: center;
-      font: .82rem/1.45 var(--mono);
-      letter-spacing: .08em;
-      text-transform: uppercase;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(.55);
+      border: 2px solid rgba(255,232,176,.88);
+      background: rgba(255,214,100,.22);
+      box-shadow: 0 0 0 7px rgba(255,214,100,.1);
+      opacity: 0;
+      transition: opacity .15s ease, transform .15s ease;
+    }
+
+    .police-board-pin.near::after,
+    .police-board-pin:active::after {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .police-board-handles {
+      z-index: 7;
       pointer-events: none;
+    }
+
+    .board-string-handle {
+      position: absolute;
+      width: 42px;
+      height: 42px;
+      transform: translate(-50%, -50%);
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      pointer-events: auto;
+      touch-action: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .board-string-handle::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 13px;
+      height: 13px;
+      transform: translate(-50%, -50%);
+      border: 2px solid rgba(250,235,196,.78);
+      border-radius: 50%;
+      background: var(--string-color);
+      box-shadow: 0 2px 4px rgba(0,0,0,.75), inset 0 1px 2px rgba(255,255,255,.5);
+    }
+
+    .board-string-handle.active::after {
+      content: "";
+      position: absolute;
+      inset: 5px;
+      border: 1px solid var(--string-color);
+      border-radius: 50%;
+      opacity: .72;
+      animation: stringHandlePulse 1.25s ease-in-out infinite;
+    }
+
+    .board-string-handle.active {
+      z-index: 2;
+    }
+
+    @keyframes stringHandlePulse {
+      0%, 100% { transform: scale(.84); opacity: .35; }
+      50% { transform: scale(1.08); opacity: .86; }
+    }
+
+    .police-board-ui {
+      max-height: 26dvh;
+    }
+
+    .police-board-ui h3 {
+      display: none;
+    }
+
+    .board-string-palette {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 7px;
+      margin-bottom: 9px;
+    }
+
+    .board-color-button {
+      min-height: 44px;
+      padding: 8px 4px;
+      border: 1px solid color-mix(in srgb, var(--string-color) 72%, #6b5731);
+      border-radius: 7px;
+      color: #f0dfbd;
+      background: rgba(10,8,5,.82);
+      font: .67rem/1.2 var(--mono);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      touch-action: manipulation;
+    }
+
+    .board-color-button::before {
+      content: "";
+      display: block;
+      width: 28px;
+      height: 4px;
+      margin: 0 auto 6px;
+      border-radius: 999px;
+      background: var(--string-color);
+      box-shadow: 0 1px 2px rgba(0,0,0,.72), inset 0 1px rgba(255,255,255,.34);
+    }
+
+    .board-color-button.active {
+      color: #fff8e7;
+      background: color-mix(in srgb, var(--string-color) 20%, rgba(8,6,4,.92));
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--string-color) 62%, transparent);
+    }
+
+    .board-string-status {
+      min-height: 38px;
+      color: #d8c49b;
+      font: .72rem/1.45 var(--mono);
+      text-align: center;
+    }
+
+    .board-string-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .board-string-actions button {
+      min-height: 42px;
+      padding: 8px;
+      border: 1px solid rgba(199,155,78,.42);
+      color: #e6d4b2;
+      background: rgba(22,15,9,.88);
+      font: .68rem/1.2 var(--mono);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      touch-action: manipulation;
     }
 
     .police-box-focus {
@@ -1692,7 +2019,7 @@
       position: absolute;
       top: 61%;
       z-index: 5;
-      width: 8.4%;
+      width: 7%;
       height: 22%;
       cursor: grab;
       touch-action: none;
@@ -1700,9 +2027,10 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    .police-lock-wheel[data-police-digit="0"] { left: 40.15%; }
-    .police-lock-wheel[data-police-digit="1"] { left: 45.75%; }
-    .police-lock-wheel[data-police-digit="2"] { left: 51.35%; }
+    .police-lock-wheel[data-police-digit="0"] { left: 39.45%; }
+    .police-lock-wheel[data-police-digit="1"] { left: 43.4%; }
+    .police-lock-wheel[data-police-digit="2"] { left: 47.35%; }
+    .police-lock-wheel[data-police-digit="3"] { left: 51.3%; }
 
     .police-lock-wheel-window {
       position: absolute;
@@ -3170,14 +3498,187 @@
       }
     }
 
+    [hidden] { display: none !important; }
+
+    .access-shell {
+      min-height: 100dvh;
+      padding: max(18px, env(safe-area-inset-top)) 14px max(22px, env(safe-area-inset-bottom));
+      display: grid;
+      place-items: center;
+    }
+
+    .access-card,
+    .archive-index {
+      width: min(100%, 760px);
+      border: 1px solid rgba(197,154,75,.38);
+      color: #e8dcc3;
+      background: linear-gradient(145deg, rgba(16,28,19,.98), rgba(5,7,5,.99));
+      box-shadow: 0 28px 90px rgba(0,0,0,.72), inset 0 0 60px rgba(151,102,36,.06);
+    }
+
+    .access-card { padding: clamp(23px, 6vw, 48px); }
+
+    .access-system {
+      color: #88bb82;
+      font: 700 .7rem/1.4 var(--mono);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .access-card h1,
+    .archive-index h1 {
+      margin: 12px 0 5px;
+      color: #f1dfb8;
+      font: 700 clamp(2rem, 10vw, 4.2rem)/.94 var(--serif);
+    }
+
+    .access-restricted {
+      margin: 0 0 22px;
+      color: #bc6c58;
+      font: 700 .76rem/1.4 var(--mono);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .access-warning {
+      margin: 18px 0;
+      padding: 15px;
+      border-left: 3px solid rgba(197,154,75,.62);
+      color: #dfd2b9;
+      background: rgba(0,0,0,.24);
+      font: 1rem/1.62 var(--serif);
+    }
+
+    .access-form { display: grid; gap: 11px; }
+    .access-form label { color: #d2b674; font: .73rem/1.4 var(--mono); letter-spacing: .13em; text-transform: uppercase; }
+    .access-form input,
+    .access-form button {
+      width: 100%;
+      min-height: 54px;
+      border: 1px solid rgba(197,154,75,.46);
+      padding: 12px 14px;
+    }
+    .access-form input { color: #f2e3c4; background: rgba(0,0,0,.34); font-size: 1rem; }
+    .access-form button { color: #24190d; background: linear-gradient(#d9bd7a,#aa8142); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .access-message { min-height: 1.6em; color: #c5b58f; font: .78rem/1.5 var(--mono); }
+    .access-message.bad { color: #df8b78; }
+
+    .archive-index { max-height: calc(100dvh - 36px); overflow: hidden; }
+    .archive-index-head { padding: 22px 18px 14px; border-bottom: 1px solid rgba(197,154,75,.25); }
+    .archive-index-head h1 { font-size: clamp(1.8rem, 8vw, 3rem); }
+    .case-list { max-height: calc(100dvh - 190px); overflow-y: auto; padding: 10px; }
+    .case-card {
+      width: 100%;
+      display: grid;
+      grid-template-columns: minmax(0,1fr) auto;
+      gap: 6px 12px;
+      margin: 0 0 8px;
+      padding: 14px;
+      border: 1px solid rgba(197,154,75,.2);
+      color: #e7d7b7;
+      background: rgba(4,8,5,.68);
+      text-align: left;
+    }
+    .case-card strong { font: 700 .78rem/1.4 var(--mono); color: #d4b66f; letter-spacing: .07em; }
+    .case-card span { grid-column: 1 / -1; font: 1.02rem/1.35 var(--serif); }
+    .case-card small { color: #7da97b; font: .66rem/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+
+    .case-lock-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 12000;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background: rgba(2,4,2,.91);
+      backdrop-filter: blur(7px);
+    }
+    .case-lock-card { width: min(100%, 460px); padding: 24px 18px; border: 1px solid rgba(197,154,75,.46); background: #0b100c; }
+    .case-lock-card h2 { margin: 0 0 6px; color: #f0d8a3; font-size: 1.8rem; }
+    .case-lock-card p { color: #c8b994; font: .9rem/1.55 var(--mono); }
+    .case-lock-actions { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+    .case-lock-actions input,
+    .case-lock-actions button,
+    .case-lock-close { min-height: 52px; border: 1px solid rgba(197,154,75,.42); color: #ead8b2; background: rgba(0,0,0,.28); padding: 10px; }
+    .case-lock-close { width: 100%; margin-top: 8px; }
+
+    .notebook-lock-panel,
+    .final-order-panel {
+      display: grid;
+      gap: 12px;
+      width: min(100%, 520px);
+      margin: 18px auto;
+      padding: 17px;
+      border: 1px solid rgba(197,154,75,.34);
+      background: rgba(0,0,0,.3);
+    }
+    .notebook-lock-panel img { display:block; width:min(100%,310px); max-height:55dvh; margin:0 auto; object-fit:contain; }
+    .notebook-lock-panel input,
+    .notebook-lock-panel button,
+    .final-order-panel input,
+    .final-order-panel button { min-height: 52px; width: 100%; border: 1px solid rgba(197,154,75,.45); padding: 11px; }
+    .notebook-lock-panel input,
+    .final-order-panel input { color:#f3e0b7; background:#090906; text-align:center; font:700 1.25rem var(--mono); letter-spacing:.2em; }
+    .notebook-lock-panel button,
+    .final-order-panel button { color:#24190d; background:linear-gradient(#d9bd7a,#aa8142); font-weight:700; }
+
+    @media (max-width: 560px) {
+      .case-lock-actions { grid-template-columns: 1fr; }
+      .access-card { padding: 23px 16px; }
+      .archive-index { max-height: calc(100dvh - 20px); }
+      .case-list { max-height: calc(100dvh - 170px); }
+      .ransom-pencil-note { font-size: clamp(.76rem, 3.45vw, 1.08rem); }
+    }
+
 
   </style>
 </head>
 <body>
-  <main class="page">
+  <div class="access-shell" id="accessShell">
+    <section class="access-card" id="archiveLoginScreen">
+      <div class="access-system"><span class="status-dot"></span>Status systemu: online</div>
+      <h1>ARCHIWUM<br />SHERLOCKA HOLMESA</h1>
+      <p class="access-restricted">Dostęp ograniczony · wymagana autoryzacja</p>
+      <div class="access-warning">
+        Nie wszystkie moje zabezpieczenia są proste. Nie myl się bez potrzeby. Po trzecim błędzie system uzna, że moje akta trafiły w niewłaściwe ręce, zamknie archiwum i zniszczy cały zapis dochodzenia.
+        <span class="signature">— Sherlock Holmes</span>
+      </div>
+      <div class="access-form">
+        <label for="archiveAccessInput">Kod dostępu</label>
+        <input id="archiveAccessInput" type="password" autocomplete="off" autocapitalize="none" spellcheck="false" />
+        <button id="archiveAccessButton" type="button">Uzyskaj dostęp</button>
+        <div class="access-message" id="archiveAccessMessage">Kod autoryzacyjny znajduje się w materiałach przekazanych przez dr. Watsona.</div>
+      </div>
+    </section>
+
+    <section class="archive-index" id="archiveIndexScreen" hidden>
+      <div class="archive-index-head">
+        <div class="access-system"><span class="status-dot"></span>Archiwum prywatne · indeks spraw</div>
+        <h1>AKTA HOLMESA</h1>
+        <div class="access-message" id="archiveIndexStatus">Wybierz właściwą sprawę i przedstaw kod akt.</div>
+      </div>
+      <div class="case-list" id="caseList"></div>
+    </section>
+  </div>
+
+  <div class="case-lock-screen" id="caseLockScreen" hidden>
+    <section class="case-lock-card" role="dialog" aria-modal="true" aria-labelledby="caseLockTitle">
+      <div class="access-system">Akta zabezpieczone</div>
+      <h2 id="caseLockTitle">Wprowadź kod akt</h2>
+      <p id="caseLockDescription"></p>
+      <div class="case-lock-actions">
+        <input id="caseAccessInput" type="password" autocomplete="off" autocapitalize="none" spellcheck="false" aria-label="Kod akt" />
+        <button id="caseAccessButton" type="button">Odblokuj</button>
+      </div>
+      <div class="access-message" id="caseAccessMessage"></div>
+      <button class="case-lock-close" id="caseLockClose" type="button">Wróć do indeksu</button>
+    </section>
+  </div>
+
+  <main class="page" id="gameApp" hidden>
     <div class="topbar">
-      <div><span class="status-dot"></span>Dostęp roboczy do archiwum: przyznany</div>
-      <button class="reset-btn" id="resetBtn">Resetuj akta testowe</button>
+      <div><span class="status-dot"></span>Sesja archiwum: aktywna</div>
+      <div id="securityCounter">Błędy autoryzacji: 0 / 3</div>
     </div>
 
     <header class="case-header">
@@ -3185,14 +3686,15 @@
       <h1>SPRAWA 143/1897<br />PORWANIE EDWARDA BASKERVILLE’A</h1>
       <div class="case-meta">
         <span class="tag">Status: częściowo odzyskane</span>
-        <span class="tag">Hasła tymczasowo wyłączone</span>
-        <span class="tag">Ścieżka aktywna: A</span>
+        <span class="tag">Poziom dostępu: śledczy</span>
+        <span class="tag">Dokumenty: zabezpieczone</span>
       </div>
       <div class="holmes-note">
         <p>13 października 1897 roku Sir Reginald Baskerville zwrócił się do mnie z prośbą o poprowadzenie sprawy porwania jego syna, Edwarda.</p>
         <p>Chłopiec zniknął poprzedniego wieczoru. Rankiem dostarczono żądanie okupu w wysokości 10 000 funtów. Sir Reginald zapewnia, że zapłaci każdą sumę, jeżeli tylko odzyska syna żywego.</p>
         <p>Otrzymałem dostęp do pokoi posiadłości, gabinetów przedsiębiorstwa, planów budynków oraz wybranych ksiąg administracyjnych. Przyjmuję sprawę, lecz nie zamierzam szukać wyłącznie porywacza. Zamierzam ustalić, kto wiedział wystarczająco dużo, by porwać Edwarda bez wzbudzania podejrzeń.</p>
         <p>Zapisuję więc pierwszą hipotezę: okup jest celem widocznym dla wszystkich. Prawdziwy ślad może kryć się w dostępie, zwyczajach i dokumentach.</p>
+        <p>Każdy odtworzony wniosek odsłoni jedną cyfrę zabezpieczonego zapisu. Dopiero komplet dwunastu cyfr pozwoli wypełnić końcowe akta. Ich właściwą kolejność należy następnie zanieść kadrze — tam dochodzenie zostanie zamknięte.</p>
         <span class="signature">— Sherlock Holmes</span>
       </div>
     </header>
@@ -3239,23 +3741,69 @@
     const POLICE_BOX_CLOSED_IMAGE = "police/evidence-box-lock-closed.png";
     const POLICE_BOX_OPEN_IMAGE = "police/evidence-box-lock-open.png";
     const DEBUG_HOTSPOTS = false;
-    const STORE_KEY = "holmes_archive_folder_layout_v1";
+    const STORE_KEY = "holmes_archive_final_v3";
+    const AUTH_KEY = "holmes_archive_session_v3";
+    const ARCHIVE_ACCESS_CODE = "Baker!1887#";
+    const TRUE_CASE_CODE = "EdwBask.143";
+    const NOTEBOOK_CODE = "1862";
+    const FINAL_ORDER_CODE = "3765";
+    const MAX_ERRORS = 3;
     const DIGITS = ["7", "4", "1", "9", "2", "6", "3", "8", "5", "0", "7", "2"];
-    const A1_BOX_CODE = "2741";
-    // Tymczasowe hasło do wewnętrznego archiwum pojazdów firmy.
-    const VEHICLE_ARCHIVE_PASSWORD = "haslo1234";
-    // Kod trzycyfrowej kłódki w pokoju policyjnym — łatwy do późniejszej zmiany.
-    const POLICE_BOX_CODE = "731";
+    // Cyfry pojawiają się w niepotwierdzonej kolejności. Dopiero końcowy kod
+    // indeksowy porządkuje pełny zapis.
+    const SCRAMBLED_DIGITS = ["7", "4", "1", "9", "2", "6", "3", "8", "7", "2", "0", "5"];
+    const A1_BOX_CODE = "4336";
+    // Hasło wynika ze wskazówki pozostawionej w opisie Biura Ekspedycji.
+    const VEHICLE_ARCHIVE_PASSWORD = "Thomas.Reed1868";
+    // Kod czterocyfrowej kłódki w pokoju policyjnym — łatwy do późniejszej zmiany.
+    const POLICE_BOX_CODE = "7426";
+    // Pytania końcowych akt śledczych i dopuszczalne warianty odpowiedzi.
+    const FINAL_REPORT_QUESTIONS = [
+      { id: "ofiara", label: "Kto został porwany?", hint: "Podaj imię i nazwisko.", answers: ["edwardbaskerville"] },
+      { id: "sprawca", label: "Kto zorganizował porwanie?", hint: "Podaj imię i nazwisko.", answers: ["arthurmoore"] },
+      { id: "miejsce", label: "Gdzie ukryto Edwarda?", hint: "Podaj miejsce i miejscowość.", answers: ["dawnymagazynnr4wenfield", "dawnymagazynnr4enfield", "magazynnr4wenfield", "magazyn4enfield"] },
+      { id: "wyjazd", label: "O której rozpoczął się przejazd użyty do porwania?", hint: "Podaj godzinę w formacie GG:MM.", answers: ["1640"] },
+      { id: "motyw", label: "Jaki był główny motyw sprawcy?", hint: "Podaj krótko motyw działania.", answers: ["okup", "pieniadze", "pieniadzezokupu", "zdobycieokupu", "zemsta", "zazdrosc", "poczuciekrzywdy", "zemstazapominiecie", "urazadoreginalda"] },
+      { id: "pojazd", label: "Którego pojazdu użyto?", hint: "Podaj numer rejestracyjny.", answers: ["b13647", "13647"] },
+      { id: "kwota", label: "Jakiej kwoty zażądano za Edwarda?", hint: "Podaj kwotę i walutę.", answers: ["10000funtow", "10000funtowbrytyjskich", "dziesiectysiecyfuntow"] },
+      { id: "ojciec", label: "Kto zlecił Holmesowi prowadzenie sprawy?", hint: "Podaj imię i nazwisko.", answers: ["reginaldbaskerville", "sirreginaldbaskerville"] },
+      { id: "firma", label: "Z jakim przedsiębiorstwem związane były pojazd i kryjówka?", hint: "Podaj pełną nazwę firmy.", answers: ["baskervilletradingcompany"] },
+      { id: "wyjscie", label: "O której Edward opuścił firmę bocznym wejściem?", hint: "Podaj godzinę w formacie GG:MM.", answers: ["1625"] }
+    ];
     const SAFE_DIAL_CODE = ["LEFT", "RIGHT", "DOWN", "UP", "LEFT", "RIGHT"];
     const SAFE_DIAL_START = ["UP", "UP", "UP", "UP", "UP", "UP"];
     const RANSOM_LENS_CLUES = [
-      { id: "r1", order: 1, direction: "LEFT", arrow: "←", x: 18, y: 16, r: 9 },
-      { id: "r2", order: 2, direction: "RIGHT", arrow: "→", x: 69, y: 22, r: 9 },
-      { id: "r3", order: 3, direction: "DOWN", arrow: "↓", x: 36, y: 38, r: 9 },
-      { id: "r4", order: 4, direction: "UP", arrow: "↑", x: 82, y: 50, r: 9 },
-      { id: "r5", order: 5, direction: "LEFT", arrow: "←", x: 25, y: 68, r: 9 },
-      { id: "r6", order: 6, direction: "RIGHT", arrow: "→", x: 63, y: 84, r: 9 }
+      { id: "r1", order: 1, direction: "LEFT", arrow: "←", x: 22, y: 17, r: 7 },
+      { id: "r2", order: 2, direction: "RIGHT", arrow: "→", x: 69, y: 23, r: 7 },
+      { id: "r3", order: 3, direction: "DOWN", arrow: "↓", x: 36, y: 39, r: 7 },
+      { id: "r4", order: 4, direction: "UP", arrow: "↑", x: 76, y: 51, r: 7 },
+      { id: "r5", order: 5, direction: "LEFT", arrow: "←", x: 27, y: 68, r: 7 },
+      { id: "r6", order: 6, direction: "RIGHT", arrow: "→", x: 62, y: 81, r: 7 }
     ];
+
+    const CASE_TITLES = [
+      "Kradzież w rezydencji Ashcroft", "Sprawa fałszywego jubilera", "Incydent przy Fleet Street", "Zniknięcie panny Waverley", "Tajemnica zegara z Chelsea",
+      "Klejnoty księżnej Marlborough", "Listy z portu w Dover", "Czarny powóz z Islington", "Sprawa bankiera z Kent", "Fałszerz z Bloomsbury",
+      "Tajemnica Czarnego Pociągu", "Zniknięcie Lorda Harringtona", "Akta posiadłości Blackwood", "Sprawa Whitechapel", "Skradziony manuskrypt",
+      "Incydent przy Victoria Station", "Tajemnica domu w Richmond", "Sprawa błękitnego sygnetu", "Zaginiony kurier Admiralicji", "Akta rodziny Cavendish",
+      "Nocny pożar w Southwark", "Tajemnica zamkniętej biblioteki", "Sprawa doktora Ellisa", "Kradzież map królewskich", "Porwanie Edwarda Baskerville’a",
+      "Sprawa srebrnej tabakierki", "Zniknięcie kupca z Leeds", "Tajemnica hotelu Langham", "Akta czerwonej koperty", "Sprawa jubilera z Mayfair",
+      "Incydent w porcie londyńskim", "Tajemnica pustego mieszkania", "Sprawa lorda Fenwicka", "Zaginiony depozyt bankowy", "Akta operacji Blackwood",
+      "Tajemnica szkatuły z Bath", "Sprawa fałszywego testamentu", "Zniknięcie inżyniera kolei", "Incydent przy Baker Street", "Akta rodziny Pembroke",
+      "Sprawa czarnego atramentu", "Tajemnica dorożki numer 17", "Zaginiona przesyłka dyplomatyczna", "Sprawa lekarza z Brixton", "Akta domu przy Regent’s Park",
+      "Tajemnica starego magazynu", "Sprawa pieczęci konsularnej", "Zniknięcie profesora Wardena", "Incydent w teatrze Lyceum", "Akta bez nazwiska"
+    ];
+    const CASES = CASE_TITLES.map((title, index) => {
+      if (index === 24) return { id: "true-case", number: "143/1897", title, status: "W TRAKCIE", playable: true };
+      const years = [1881,1883,1884,1886,1887,1888,1889,1890,1891,1892,1893,1894,1895,1896,1897];
+      return {
+        id: "case-" + (index + 1),
+        number: String(11 + index * 7).padStart(3, "0") + "/" + years[index % years.length],
+        title,
+        status: ["ZAKOŃCZONA", "ARCHIWALNA", "UTAJNIONA", "W TRAKCIE"][index % 4],
+        playable: false
+      };
+    });
 
     const VEHICLE_DATES = ["11 października 1897", "12 października 1897", "13 października 1897", "14 października 1897"];
     const VEHICLE_REGISTRY = [
@@ -3437,30 +3985,31 @@
     }, {});
 
     const folders = [
-      { id: "A", code: "Ścieżka I", title: "Ostatni dzień Edwarda", state: "otwarta" },
-      { id: "C", code: "Ścieżka II", title: "Baskerville Trading Company", state: "akta przedsiębiorstwa" },
-      { id: "B", code: "Ścieżka III", title: "Dochodzenie i Policja", state: "akta policyjne" }
+      { id: "A", code: "TEKA I", title: "Ostatni dzień Edwarda", state: "materiały prywatne" },
+      { id: "C", code: "TEKA II", title: "Baskerville Trading Company", state: "akta przedsiębiorstwa" },
+      { id: "B", code: "TEKA III", title: "Dochodzenie i Policja", state: "akta policyjne" }
     ];
 
     const filesA = [
       { id: "A-1", type: "Materiał", title: "Biurko Edwarda" },
       { id: "A-2", type: "Notatka", title: "Zabezpieczenie przedmiotów przez policję" },
       { id: "A-3", type: "Oględziny", title: "Pokój Edwarda" },
-      { id: "A-4", type: "Materiał", title: "Wskazówka dotycząca mapy", hiddenTitle: "Nieoznaczony materiał ze skrzyneczki" },
-      { id: "A-5", type: "List", title: "List Reginalda do Edwarda", hiddenTitle: "Zapieczętowany list ze skrzyneczki" },
-      { id: "A-6", type: "Notatnik", title: "Notatnik Edwarda" }
+      { id: "A-4", type: "Materiał", title: "Wskazówka dotycząca mapy", hiddenTitle: "Materiał zablokowany" },
+      { id: "A-5", type: "List", title: "List Reginalda do Edwarda", hiddenTitle: "Materiał zablokowany" },
+      { id: "A-6", type: "Notatnik", title: "Notatnik Edwarda", hiddenTitle: "Materiał zablokowany" }
     ];
 
     const filesB = [
       { id: "B-1", type: "List", title: "List od porywacza" },
-      { id: "B-2", type: "Oględziny", title: "Pokój policyjny" }
+      { id: "B-2", type: "Oględziny", title: "Pokój policyjny" },
+      { id: "B-3", type: "Sejf", title: "Sejf policyjny" },
+      { id: "B-4", type: "Akta", title: "Akta Śledcze", hiddenTitle: "Materiał zablokowany" }
     ];
 
     const filesC = [
       { id: "C-1", type: "Plan", title: "Plan firmy Baskerville Trading Company" },
       { id: "C-2", type: "Materiał", title: "Dziennik portierni — fragmenty" },
-      { id: "C-3", type: "Sejf", title: "Sejf firmowy" },
-      { id: "C-4", type: "Archiwum", title: "Archiwum przejazdów pojazdów" }
+      { id: "C-3", type: "Archiwum", title: "Archiwum przejazdów pojazdów" }
     ];
 
     const folderFiles = {
@@ -3487,7 +4036,7 @@
       {
         id: "desk",
         code: "Obszar III",
-        title: "Biurko robocze",
+        title: "Biurko Edwarda",
         imageIndex: 2,
         note: "Blat z papierami, narzędziami i przedmiotami, które Edward mógł zostawić w pośpiechu albo z rozmysłem."
       },
@@ -3640,11 +4189,11 @@
 
     const DESK_ITEMS = {
       lamp: { title: "Lampa naftowa", hotspot: { x: 0.8, y: 8.2, w: 13.4, h: 52.5 }, focus: { ox: "7%", oy: "37%", zoom: 3.25, sx: "28vw", sy: "10vh" }, note: "Lampa tłumaczy, dlaczego przy biurku można było pracować po zmroku. Nie rozstrzyga sprawy, ale potwierdza, że Edward porządkował coś jeszcze wieczorem." },
-      box: { title: "Skrzyneczka na kod", hotspot: { x: 17.2, y: 38.0, w: 24.6, h: 22.2 }, focus: { ox: "30%", oy: "51%", zoom: 2.45, sx: "0vw", sy: "0vh" }, note: "Skrzyneczka jest zamknięta czterocyfrową kłódką. Kod nie znajduje się na samym biurku. Najpewniej trzeba będzie połączyć materiały zabezpieczone przez policję z tym, co Edward zostawił w pokoju." },
+      box: { title: "Skrzyneczka na kod", hotspot: { x: 17.2, y: 38.0, w: 24.6, h: 22.2 }, focus: { ox: "30%", oy: "51%", zoom: 2.45, sx: "0vw", sy: "0vh" }, note: "Skrzyneczka jest zamknięta czterocyfrową kłódką. Edward zwykł zapisywać liczby nawet przy sprawach zupełnie codziennych. Czasem proporcje mówią więcej niż nazwa przygotowywanej rzeczy." },
       calendar: { title: "Kalendarz Edwarda", hotspot: { x: 45.0, y: 36.8, w: 9.3, h: 16.5 }, focus: { ox: "49%", oy: "44%", zoom: 4.05, sx: "0vw", sy: "4vh" }, note: "Kalendarz nie wskazuje ucieczki. Edward miał pojawić się w firmie, przygotować się do przejęcia obowiązków, wrócić wieczorem do domu, a następnego dnia odbyć kolejne spotkania. Plan był zapisany również w firmowym terminarzu." },
       papers: { title: "Dokumenty firmowe", hotspot: { x: 42.4, y: 53.0, w: 24.0, h: 16.0 }, focus: { ox: "54%", oy: "62%", zoom: 3.35, sx: "-6vw", sy: "-4vh" }, note: "Dokumenty dotyczą przygotowań Edwarda do przejęcia obowiązków. Nie są dowodem ucieczki. Przeciwnie — wyglądają jak zwykła praca przerwana w połowie dnia." },
-      ink: { title: "Pióro i list", hotspot: { x: 65.5, y: 54.0, w: 17.2, h: 14.0 }, focus: { ox: "75%", oy: "62%", zoom: 3.55, sx: "-27vw", sy: "-5vh" }, note: "Pióro spoczywa na liście, jakby pisanie przerwano bez gwałtownego pośpiechu. W pokoju nie brakuje dokumentów osobistych ani rzeczy potrzebnych do podróży." },
-      photo: { title: "Fotografia rodzinna", hotspot: { x: 71.8, y: 22.4, w: 15.0, h: 32.0 }, focus: { ox: "78%", oy: "39%", zoom: 3.85, sx: "-31vw", sy: "5vh" }, note: "Fotografia ojca i syna przypomina, że porwano nie tylko dziecko bogacza, ale także przyszłego następcę przedsiębiorstwa." },
+      ink: { title: "Pióro i list", hotspot: { x: 65.5, y: 54.0, w: 17.2, h: 14.0 }, focus: { ox: "75%", oy: "62%", zoom: 3.55, sx: "-27vw", sy: "-5vh" }, note: "Pióro spoczywa na liście, jakby pisanie przerwano bez gwałtownego pośpiechu. Atrament zdążył wyschnąć; sam układ przedmiotów nie pozwala jednak ustalić, kiedy Edward odszedł od biurka." },
+      photo: { title: "Fotografia rodzinna", hotspot: { x: 71.8, y: 22.4, w: 15.0, h: 32.0 }, focus: { ox: "78%", oy: "39%", zoom: 3.85, sx: "-31vw", sy: "5vh" }, note: "Fotografia ojca i syna przypomina, że porwano nie tylko dziecko bogacza, ale także przyszłego następcę przedsiębiorstwa. W podobnych sprawach rodzinny portret bywa mniej ważny od tego, kto znał plany obu mężczyzn." },
       drawer: { title: "Szuflada z zamkiem", hotspot: { x: 65.0, y: 70.5, w: 33.8, h: 25.5 }, focus: { ox: "82%", oy: "84%", zoom: 3.55, sx: "-34vw", sy: "-23vh" }, note: "Szuflada jest zamknięta na mały klucz. Nie ma śladów wyłamania. Jeżeli klucz nie leży przy biurku, należy szukać go w pokoju Edwarda." }
     };
 
@@ -3661,13 +4210,13 @@
         title: "Szafa akt Scotland Yardu",
         hotspot: { x: 34.5, y: 4.0, w: 23.5, h: 57.0 },
         focus: { ox: "47%", oy: "31%", zoom: 3.0 },
-        note: "Szafa zawiera księgi służbowe i zamknięte teczki. Nie wszystkie należą do sprawy Edwarda, ale ich układ pozwala ustalić, które materiały wyjmowano ostatnio."
+        note: "Szafa zawiera księgi służbowe i zamknięte teczki. Nie wszystkie należą do sprawy Edwarda, dlatego kolejność odłożenia dokumentów nie może zastąpić analizy ich treści."
       },
       board: {
         title: "Tablica śledcza",
         hotspot: { x: 66.5, y: 1.0, w: 33.5, h: 45.5 },
         focus: { ox: "84%", oy: "24%", zoom: 3.0 },
-        note: "Tablica została przygotowana do zestawienia osób, miejsc i godzin. Na razie pozostaje pusta. Gdy kolejne dowody trafią do akt, będzie można połączyć je nicią i sprawdzić, które ślady tworzą jeden ciąg."
+        note: "Tablica została przygotowana do zestawienia symboli odnalezionych w różnych materiałach. Samo połączenie dwóch kart nie wystarczy; znaczenie ujawni dopiero pełna droga każdego sznurka."
       },
       desk: {
         title: "Biurko prowadzącego dochodzenie",
@@ -3679,14 +4228,36 @@
         title: "Dokumenty policyjne",
         hotspot: { x: 72.5, y: 47.0, w: 27.5, h: 25.0 },
         focus: { ox: "88%", oy: "57%", zoom: 3.6 },
-        note: "Luźne dokumenty zostały odłożone bez numeracji. Część dotyczy przesłuchań, część ruchu pojazdów. Ich znaczenie ujawni się dopiero po porównaniu godzin."
+        note: "Luźne dokumenty zostały odłożone bez numeracji. Część dotyczy przesłuchań, część ruchu pojazdów. Należy zestawiać ich treść, nie położenie na biurku."
       },
       box: {
         title: "Skrzynka dowodowa",
         hotspot: { x: 51.0, y: 56.0, w: 35.0, h: 35.0 },
         focus: { ox: "68%", oy: "72%", zoom: 3.15 },
-        note: "Drewniana skrzynka została zabezpieczona trzycyfrową kłódką. Mechanizm jest sprawny; właściwe ustawienie trzeba będzie wyprowadzić z materiałów dochodzenia."
+        note: "Drewniana skrzynka została zabezpieczona czterocyfrową kłódką. Na wieku pozostał pył grafitowy i ślad po wielokrotnie składanej mapie. Cztery ustawienia mogą wynikać z tras, które po naniesieniu zaczynają układać się w czytelny porządek."
       }
+    };
+
+    // Pinezki są już częścią grafiki tablicy. Te współrzędne wyznaczają jedynie
+    // niewidzialne, wygodne dla palca pola zaczepienia sznurków.
+    const POLICE_BOARD_PINS = [
+      { id: "L1", x: 13.75, y: 9.9 },
+      { id: "L2", x: 13.75, y: 27.15 },
+      { id: "L3", x: 13.75, y: 44.3 },
+      { id: "L4", x: 13.75, y: 61.55 },
+      { id: "L5", x: 13.75, y: 78.85 },
+      { id: "R1", x: 85.6, y: 9.4 },
+      { id: "R2", x: 85.6, y: 27.35 },
+      { id: "R3", x: 85.6, y: 44.3 },
+      { id: "R4", x: 85.6, y: 61.55 },
+      { id: "R5", x: 85.6, y: 78.8 }
+    ];
+
+    const POLICE_BOARD_STRINGS = {
+      yellow: { label: "żółty", color: "#e3bd32" },
+      red: { label: "czerwony", color: "#b9362f" },
+      blue: { label: "niebieski", color: "#3c7fc4" },
+      green: { label: "zielony", color: "#4f9851" }
     };
 
     const DIAL_ORDER = ["UP", "RIGHT", "DOWN", "LEFT"];
@@ -3723,8 +4294,8 @@
       moore: {
         title: "Biurko Arthura Moore’a",
         body: [
-          "Biurko Moore’a znajduje się na skraju biura, bliżej przejścia do hali niż pozostałe stanowiska. Dobry punkt dla człowieka, który chce widzieć więcej, niż powinien.",
-          "Zgodnie z wykazem Moore odpowiada za księgowość i archiwum finansowe. Nazwisko to pojawia się więc przy dokumentach, rachunkach i — co bardziej niepokojące — przy gabinecie Sir Reginalda."
+          "Biurko Moore’a znajduje się na skraju biura, bliżej przejścia do hali niż pozostałe stanowiska. Z tego miejsca dobrze widać ruch między administracją a częścią operacyjną.",
+          "Zgodnie z wykazem Moore odpowiada za księgowość i archiwum finansowe. Jego nazwisko pojawia się więc przy dokumentach, rachunkach oraz wykazie dostępu do gabinetu Sir Reginalda. Sam dostęp nie rozstrzyga o winie."
         ],
         keys: "Dostęp osobisty: Arthur Moore. Dostęp nadrzędny: Sir Reginald Baskerville. Dodatkowy dostęp służbowy Moore’a: księgowość, archiwum finansowe i gabinet Sir Reginalda."
       },
@@ -3747,8 +4318,8 @@
       records: {
         title: "Pokój Dokumentów i tras",
         body: [
-          "Szafy z rejestrami, kopiami korespondencji, wykazami tras i aktami obiektów należących do firmy. Pomieszczenie pozornie nudne, a przez to wyjątkowo użyteczne dla kogoś, kto przygotowuje porwanie.",
-          "Jeżeli sprawca znał nieużywany obiekt firmy lub drogę, którą można było przewieźć Edwarda bez świadków, ślad powinien prowadzić właśnie przez ten pokój."
+          "Szafy z rejestrami, kopiami korespondencji, wykazami tras i aktami obiektów należących do firmy. Dokumenty pozwalają odtworzyć miejsca i przejazdy znane upoważnionym pracownikom.",
+          "Należy sprawdzić, czy informacje z tego pokoju łączą się z którymkolwiek zapisem czasu, pojazdu lub dostępu odnalezionym w innych aktach."
         ],
         keys: "Klucze: Sir Reginald Baskerville, Arthur Moore oraz Alfred Morgan dla wykazów tras i utrzymania obiektów."
       },
@@ -3796,9 +4367,10 @@
         title: "Biuro Ekspedycji",
         body: [
           "Dokumenty wywozowe, numery wozów, listy przewozowe i informacje o codziennych trasach. Kto znał ekspedycję, mógł wiedzieć, który pojazd nie zwróci uwagi.",
-          "Ekspedycja i organizacja wysyłek należą do Thomasa Reeda, lecz nadzór nadrzędny nad sprawami spółki zachowują Sir Reginald i Arthur Moore."
+          "Ekspedycja i organizacja wysyłek należą do Thomasa Reeda, lecz nadzór nadrzędny nad sprawami spółki zachowują Sir Reginald i Arthur Moore.",
+          "Thomas Reed odpowiada również za dostęp do wewnętrznego archiwum przejazdów pojazdów. W adnotacji technicznej zapisał, że hasło utworzył z własnego imienia i nazwiska rozdzielonych kropką, a na końcu dopisał rok założenia firmy."
         ],
-        keys: "Klucze: Sir Reginald Baskerville, Thomas Reed oraz Arthur Moore dla nadzoru zarządu."
+        keys: "Klucze: Sir Reginald Baskerville, Thomas Reed oraz Arthur Moore dla nadzoru zarządu. Dostęp do archiwum pojazdów: Thomas Reed."
       },
       warehouse: {
         title: "Magazyn Główny",
@@ -3881,7 +4453,12 @@
       { room: "porter", x: 3.8, y: 81.8, w: 8.0, h: 9.1 }
     ];
 
+    let auth = loadAuth();
     let state = loadState();
+    normalizeEvidenceState();
+    let selectedCase = null;
+    let activePoliceBoardString = "yellow";
+    let suppressPoliceBoardPinClickUntil = 0;
     let activeFile = state.activeFile || "A-1";
     if (!folderFiles.A.some(file => file.id === activeFile) && !folderFiles.B.some(file => file.id === activeFile) && !folderFiles.C.some(file => file.id === activeFile)) {
       activeFile = "A-1";
@@ -3890,14 +4467,212 @@
 
     function loadState() {
       try {
-        return JSON.parse(localStorage.getItem(STORE_KEY)) || { progress: 0, digits: [] };
+        const saved = JSON.parse(localStorage.getItem(STORE_KEY)) || {};
+        return Object.assign({ progress: 0, digits: [], evidenceSlots: [], finalReportDraft: {}, finalCheckpoint: false }, saved);
       } catch (_) {
-        return { progress: 0, digits: [] };
+        return { progress: 0, digits: [], evidenceSlots: [], finalReportDraft: {}, finalCheckpoint: false };
       }
+    }
+
+    function normalizeEvidenceState() {
+      const legacyCount = Math.max(0, Math.min(Number(state.progress || 0), DIGITS.length));
+      if (!Array.isArray(state.evidenceSlots) || state.evidenceSlots.length !== DIGITS.length) {
+        state.evidenceSlots = DIGITS.map((_, index) => index < legacyCount);
+      } else {
+        state.evidenceSlots = state.evidenceSlots.map(Boolean);
+      }
+      state.progress = state.evidenceSlots.filter(Boolean).length;
+      state.digits = state.finalOrderSolved
+        ? DIGITS.slice()
+        : SCRAMBLED_DIGITS.map((digit, index) => state.evidenceSlots[index] ? digit : null);
+      return state.evidenceSlots;
+    }
+
+    function hasFinalCheckpoint() {
+      return !!state.finalCheckpoint || Number(state.progress || 0) >= DIGITS.length;
+    }
+
+    function loadAuth() {
+      try {
+        return Object.assign({ archive: false, caseAccess: false, mistakes: 0 }, JSON.parse(sessionStorage.getItem(AUTH_KEY)) || {});
+      } catch (_) {
+        return { archive: false, caseAccess: false, mistakes: 0 };
+      }
+    }
+
+    function saveAuth() {
+      sessionStorage.setItem(AUTH_KEY, JSON.stringify(auth));
+      updateSecurityCounter();
+    }
+
+    function updateSecurityCounter() {
+      const counter = document.getElementById("securityCounter");
+      if (counter) counter.textContent = hasFinalCheckpoint()
+        ? "Punkt kontrolny: zapis zabezpieczony"
+        : "Błędy autoryzacji: " + (auth.mistakes || 0) + " / " + MAX_ERRORS;
+      const archiveStatus = document.getElementById("archiveIndexStatus");
+      if (archiveStatus && auth.archive && !auth.caseAccess) {
+        archiveStatus.textContent = "Wybierz właściwą sprawę i przedstaw kod akt. Pozostałe próby: " + Math.max(0, MAX_ERRORS - (auth.mistakes || 0)) + ".";
+      }
+    }
+
+    function securityPurge(reason) {
+      if (hasFinalCheckpoint()) {
+        auth.mistakes = 0;
+        saveAuth();
+        return;
+      }
+      localStorage.removeItem(STORE_KEY);
+      sessionStorage.removeItem(AUTH_KEY);
+      auth = { archive: false, caseAccess: false, mistakes: 0 };
+      state = { progress: 0, digits: [], evidenceSlots: [], finalReportDraft: {}, finalCheckpoint: false };
+      activeFolder = "A";
+      activeFile = "A-1";
+      closeDeskModal();
+      closePoliceModal();
+      closeFinalCaseModal();
+      const caseLock = document.getElementById("caseLockScreen");
+      if (caseLock) caseLock.hidden = true;
+      showEntryFlow();
+      const message = document.getElementById("archiveAccessMessage");
+      if (message) {
+        message.className = "access-message bad";
+        message.textContent = reason || "DOSTĘP COFNIĘTY. System usunął zapis dochodzenia. Autoryzację należy rozpocząć od początku.";
+      }
+      playSfx("bad");
+    }
+
+    function registerMistake(message) {
+      if (hasFinalCheckpoint()) {
+        auth.mistakes = 0;
+        saveAuth();
+        return message || "Zapis końcowy pozostaje zabezpieczony. Sprawdź materiały i spróbuj ponownie.";
+      }
+      auth.mistakes = Number(auth.mistakes || 0) + 1;
+      if (auth.mistakes >= MAX_ERRORS) {
+        securityPurge("DOSTĘP COFNIĘTY. Trzecia niezgodna próba uruchomiła zabezpieczenie. Wszystkie zgromadzone dane zostały usunięte.");
+        return false;
+      }
+      saveAuth();
+      playSfx("bad");
+      return message || ("ODMOWA DOSTĘPU. Pozostałe próby: " + (MAX_ERRORS - auth.mistakes) + ".");
+    }
+
+    function renderCaseIndex() {
+      const root = document.getElementById("caseList");
+      if (!root) return;
+      root.innerHTML = CASES.map(item =>
+        '<button class="case-card" type="button" data-case-id="' + item.id + '">' +
+          '<strong>SPRAWA ' + item.number + '</strong><small>' + item.status + '</small>' +
+          '<span>' + item.title + '</span>' +
+        '</button>'
+      ).join("");
+      root.querySelectorAll("[data-case-id]").forEach(button => {
+        button.addEventListener("click", () => openCaseLock(button.dataset.caseId));
+      });
+    }
+
+    function openCaseLock(caseId) {
+      selectedCase = CASES.find(item => item.id === caseId) || null;
+      if (!selectedCase) return;
+      const screen = document.getElementById("caseLockScreen");
+      const title = document.getElementById("caseLockTitle");
+      const description = document.getElementById("caseLockDescription");
+      const input = document.getElementById("caseAccessInput");
+      const message = document.getElementById("caseAccessMessage");
+      if (title) title.textContent = "SPRAWA " + selectedCase.number;
+      if (description) description.textContent = selectedCase.title + ". Wprowadź kod dostępu przypisany do oznaczenia tej sprawy.";
+      if (input) input.value = "";
+      if (message) { message.className = "access-message"; message.textContent = "Poziom autoryzacji oczekuje na weryfikację."; }
+      if (screen) screen.hidden = false;
+      setTimeout(() => input && input.focus(), 40);
+    }
+
+    function closeCaseLockScreen() {
+      const screen = document.getElementById("caseLockScreen");
+      if (screen) screen.hidden = true;
+      selectedCase = null;
+    }
+
+    function showEntryFlow() {
+      const shell = document.getElementById("accessShell");
+      const login = document.getElementById("archiveLoginScreen");
+      const index = document.getElementById("archiveIndexScreen");
+      const game = document.getElementById("gameApp");
+      if (auth.archive && auth.caseAccess) {
+        if (shell) shell.hidden = true;
+        if (game) game.hidden = false;
+        updateSecurityCounter();
+        renderFolders();
+        renderFiles();
+        renderView();
+        return;
+      }
+      if (game) game.hidden = true;
+      if (shell) shell.hidden = false;
+      if (login) login.hidden = !!auth.archive;
+      if (index) index.hidden = !auth.archive;
+      if (auth.archive) renderCaseIndex();
+      updateSecurityCounter();
+    }
+
+    function bindEntryFlow() {
+      const archiveInput = document.getElementById("archiveAccessInput");
+      const archiveButton = document.getElementById("archiveAccessButton");
+      const archiveMessage = document.getElementById("archiveAccessMessage");
+      const submitArchive = () => {
+        if (!archiveInput) return;
+        if (archiveInput.value !== ARCHIVE_ACCESS_CODE) {
+          const result = registerMistake();
+          if (result === false) return;
+          if (archiveMessage) {
+            archiveMessage.className = "access-message bad";
+            archiveMessage.textContent = "ODMOWA DOSTĘPU. Kod archiwum odrzucony. Pozostałe próby: " + (MAX_ERRORS - auth.mistakes) + ".";
+          }
+          return;
+        }
+        auth.archive = true;
+        auth.caseAccess = false;
+        saveAuth();
+        playSfx("unlock");
+        showEntryFlow();
+      };
+      if (archiveButton) archiveButton.onclick = submitArchive;
+      if (archiveInput) archiveInput.addEventListener("keydown", event => { if (event.key === "Enter") submitArchive(); });
+
+      const caseButton = document.getElementById("caseAccessButton");
+      const caseInput = document.getElementById("caseAccessInput");
+      const caseMessage = document.getElementById("caseAccessMessage");
+      const submitCase = () => {
+        if (!selectedCase || !caseInput) return;
+        const correct = selectedCase.playable && caseInput.value === TRUE_CASE_CODE;
+        if (!correct) {
+          const result = registerMistake();
+          if (result === false) return;
+          if (caseMessage) {
+            caseMessage.className = "access-message bad";
+            caseMessage.textContent = selectedCase.playable
+              ? "UWAGA. Kod dostępu niezgodny z numerem sprawy. Pozostałe próby: " + (MAX_ERRORS - auth.mistakes) + "."
+              : "ODMOWA DOSTĘPU. Brak wymaganego poziomu autoryzacji. Próba została odnotowana.";
+          }
+          return;
+        }
+        auth.caseAccess = true;
+        saveAuth();
+        closeCaseLockScreen();
+        playSfx("unlock");
+        showEntryFlow();
+      };
+      if (caseButton) caseButton.onclick = submitCase;
+      if (caseInput) caseInput.addEventListener("keydown", event => { if (event.key === "Enter") submitCase(); });
+      const caseClose = document.getElementById("caseLockClose");
+      if (caseClose) caseClose.onclick = closeCaseLockScreen;
     }
 
     function saveState() {
       state.activeFile = activeFile;
+      normalizeEvidenceState();
+      if (state.evidenceSlots.every(Boolean)) state.finalCheckpoint = true;
       localStorage.setItem(STORE_KEY, JSON.stringify(state));
     }
 
@@ -3957,6 +4732,8 @@
     }
 
     function isUnlocked(fileId) {
+      if (fileId === "B-4") return !!state.safeOpen;
+      if (String(fileId).startsWith("B-") || String(fileId).startsWith("C-")) return true;
       if (["A-1", "A-2", "A-3"].includes(fileId)) return true;
       if (["A-4", "A-5"].includes(fileId)) return !!state.a1BoxOpen;
       if (fileId === "A-6") return !!state.a1DrawerUnlocked;
@@ -3965,21 +4742,28 @@
     }
 
     function isDone(fileId) {
-      const idx = filesA.findIndex(f => f.id === fileId);
-      return idx < state.progress;
+      if (fileId === "B-3") return !!state.safeOpen;
+      if (fileId === "B-4") return !!state.finalOrderSolved;
+      if (fileId === "C-2") return !!state.porterPuzzleComplete;
+      if (fileId === "C-3") return !!state.vehicleArchiveAuthorized;
+      if (fileId === "A-1") return !!state.a1BoxOpen;
+      if (fileId === "A-2") return false;
+      if (fileId === "A-3") return !!(state.roomItems && state.roomItems.safeKey) && foundPorterPieces().length === PORTER_PUZZLE_PIECES.length;
+      if (fileId === "A-4" || fileId === "A-5") return !!state.a1BoxOpen;
+      if (fileId === "A-6") return !!state.notebookUnlocked;
+      if (String(fileId).startsWith("B-") || String(fileId).startsWith("C-")) return false;
+      return false;
     }
 
     function displayFileTitle(file) {
       if (!file) return "";
-      if (!isUnlocked(file.id) && ["A-4", "A-5", "A-6"].includes(file.id)) return "Materiał zablokowany";
+      if (!isUnlocked(file.id) && (["A-4", "A-5", "A-6", "B-4"].includes(file.id))) return file.hiddenTitle || "Materiał zablokowany";
       return file.title;
     }
 
     function markDone(index, msgId, text) {
-      if (state.progress < index + 1) {
-        state.progress = index + 1;
-        state.digits = DIGITS.slice(0, state.progress);
-      }
+      const slots = normalizeEvidenceState();
+      if (index >= 0 && index < slots.length) slots[index] = true;
       saveState();
       renderFolders();
       renderFiles();
@@ -3990,17 +4774,40 @@
       }
     }
 
+    function awardProgress(target) {
+      const safeTarget = Math.max(0, Math.min(Number(target) || 0, DIGITS.length));
+      if (!safeTarget) return;
+      const slots = normalizeEvidenceState();
+      if (slots[safeTarget - 1]) return;
+      slots[safeTarget - 1] = true;
+      state.progress = slots.filter(Boolean).length;
+      state.digits = SCRAMBLED_DIGITS.map((digit, index) => slots[index] ? digit : null);
+      if (slots.every(Boolean)) {
+        state.finalCheckpoint = true;
+        auth.mistakes = 0;
+        saveAuth();
+      }
+      saveState();
+      renderEvidencePanel();
+    }
+
     function setBad(msgId, text) {
+      const result = registerMistake();
+      if (result === false) return;
       const msg = document.getElementById(msgId);
       if (msg) {
         msg.className = "msg bad";
-        msg.textContent = text;
+        msg.textContent = text + " Pozostałe próby: " + (MAX_ERRORS - auth.mistakes) + ".";
       }
     }
 
     function renderEvidencePanel() {
       const root = document.getElementById("evidenceMount");
-      if (root) root.innerHTML = evidenceStrip();
+      if (root) {
+        root.innerHTML = evidenceStrip();
+        const finalButton = document.getElementById("openFinalSummary");
+        if (finalButton) finalButton.onclick = showFinalCaseModal;
+      }
     }
 
     function renderFolders() {
@@ -4034,8 +4841,8 @@
       const files = folderFiles[activeFolder] || [];
       const folder = folders.find(f => f.id === activeFolder);
       root.innerHTML = '<div class="file-list-title">' + folder.title + '</div>' + files.map(file => {
-        const unlocked = activeFolder === "A" ? isUnlocked(file.id) : true;
-        const done = activeFolder === "A" ? isDone(file.id) : false;
+        const unlocked = isUnlocked(file.id);
+        const done = isDone(file.id);
         return '<button class="file-btn ' + (activeFile === file.id ? 'active ' : '') + (!unlocked ? 'locked' : '') + '" data-file="' + file.id + '">' +
           '<span class="file-icon">' + (done ? '✓' : unlocked ? '▤' : '◆') + '</span>' +
           '<span class="file-name"><strong>' + displayFileTitle(file) + '</strong></span>' +
@@ -4046,7 +4853,7 @@
       root.querySelectorAll(".file-btn").forEach(btn => {
         btn.addEventListener("click", () => {
           const id = btn.dataset.file;
-          if (activeFolder === "A" && !isUnlocked(id)) {
+          if (!isUnlocked(id)) {
             activeFile = id;
             renderFiles();
             renderView();
@@ -4067,12 +4874,16 @@
     }
 
     function evidenceStrip() {
-      const found = Math.min(state.progress || 0, DIGITS.length);
+      const slots = normalizeEvidenceState();
+      const found = slots.filter(Boolean).length;
+      const shownDigits = Array.isArray(state.digits) ? state.digits : [];
+      const orderPending = found === DIGITS.length && !state.finalOrderSolved;
       return '<div class="evidence-panel" aria-label="Zgromadzone cyfry">' +
-        '<div class="evidence-title"><span>Zgromadzone cyfry</span><span>' + found + ' / ' + DIGITS.length + '</span></div>' +
+        '<div class="evidence-title"><span>Zgromadzone cyfry</span><span>' + (orderPending ? 'kolejność niepotwierdzona' : found + ' / ' + DIGITS.length) + '</span></div>' +
         '<div class="evidence-strip">' + DIGITS.map((digit, idx) =>
-          '<div class="digit-box ' + (idx < found ? 'found' : '') + '">' + (idx < found ? digit : '&mdash;') + '</div>'
+          '<div class="digit-box ' + (slots[idx] ? 'found' : '') + '">' + (slots[idx] ? (shownDigits[idx] || digit) : '&mdash;') + '</div>'
         ).join("") + '</div>' +
+        (state.finalOrderSolved ? '<button class="evidence-final-button" id="openFinalSummary" type="button">Pokaż końcowy zapis</button>' : '') +
       '</div>';
     }
 
@@ -4080,8 +4891,16 @@
       const root = document.getElementById("fileView");
 
       if (activeFolder === "B") {
+        if (!isUnlocked(activeFile)) {
+          const file = filesB.find(f => f.id === activeFile);
+          root.innerHTML = '<div class="file-content">' +
+            '<div class="file-header"><h2>' + displayFileTitle(file) + '</h2><small>zablokowane</small></div>' +
+            '<div class="sealed"><div><strong>Akta zabezpieczone.</strong> Dokument zostanie ujawniony dopiero po otwarciu sejfu policyjnego.</div></div>' +
+          '</div>';
+          return;
+        }
         const index = filesB.findIndex(f => f.id === activeFile);
-        const renderers = [renderB1, renderPoliceRoom];
+        const renderers = [renderB1, renderPoliceRoom, renderPoliceSafe, renderFinalPoliceReport];
         root.innerHTML = '<div class="file-content">' + renderers[Math.max(0, index)]() + '</div>';
         bindCurrentFile();
         return;
@@ -4089,7 +4908,7 @@
 
       if (activeFolder === "C") {
         const index = filesC.findIndex(f => f.id === activeFile);
-        const renderers = [renderCompanyPlan, renderC2PorterPuzzle, renderC3Safe, renderVehicleArchive];
+        const renderers = [renderCompanyPlan, renderC2PorterPuzzle, renderVehicleArchive];
         root.innerHTML = '<div class="file-content">' + renderers[Math.max(0, index)]() + '</div>';
         bindCurrentFile();
         return;
@@ -4099,7 +4918,7 @@
         const file = filesA.find(f => f.id === activeFile);
         root.innerHTML = '<div class="file-content">' +
           '<div class="file-header"><h2>' + displayFileTitle(file) + '</h2><small>zablokowane</small></div>' +
-          '<div class="sealed"><div><strong>Raport zabezpieczony.</strong>Pełna treść zostanie odczytana dopiero po zgodnym odtworzeniu wcześniejszego wniosku Holmesa.</div></div>' +
+          '<div class="sealed"><div><strong>Materiał zabezpieczony.</strong> Treść pozostaje niedostępna do czasu odnalezienia właściwego śladu.</div></div>' +
         '</div>';
         return;
       }
@@ -4116,7 +4935,7 @@
 
     function renderA1() {
       const file = filesA[0];
-      return header(file, isDone("A-1") ? "odczytane" : "pierwszy zapis ścieżki") +
+      return header(file, isDone("A-1") ? "odczytane" : "pierwszy zapis w aktach") +
         '<div class="document-paper">' +
           '<p><strong>' + file.title + '</strong></p>' +
           '<p>Wśród dokumentów przekazanych przez Sir Reginalda znalazłem plan przedsiębiorstwa Baskerville Trading Company. Na pierwszy rzut oka jest to zwykły rysunek budynku: gabinety, hale, magazyny, biura i przejścia służbowe.</p>' +
@@ -4258,7 +5077,7 @@
           '<p>Nie zapisuję jeszcze oskarżenia. Zapisuję kierunek.</p>' +
           '<span class="signature">— Sherlock Holmes</span>' +
           '<div class="archive-input">' +
-            '<label for="answerA7">Wniosek do dalszej ścieżki</label>' +
+            '<label for="answerA7">Wniosek do dalszej części akt</label>' +
             '<div class="input-row"><input id="answerA7" autocomplete="off" placeholder="A.M. — ..." /><button id="checkA7">Sprawdź zgodność</button></div>' +
             '<div class="msg" id="msgA7">' + (isDone("A-7") ? 'RAPORT ODSZYFROWANY. Folder A zamknięty.' : '') + '</div>' +
           '</div>' +
@@ -4275,18 +5094,18 @@
       const drawerInfo = state.a1DrawerUnlocked
         ? "Szuflada została otwarta znalezionym kluczem. Notatnik Edwarda można teraz odczytać jako osobny materiał."
         : (state.roomItems && state.roomItems.safeKey)
-          ? "Klucz odnaleziony w pokoju Edwarda pasuje do szuflady biurka."
-          : "Szuflada pozostaje zamknięta. Klucza należy szukać w pokoju Edwarda.";
+          ? "Klucz odnaleziony podczas oględzin pasuje do zamka szuflady."
+          : "Szuflada pozostaje zamknięta. Klucza nie ma wśród przedmiotów leżących na biurku.";
       const boxInfo = state.a1BoxOpen
         ? "Skrzyneczka została otwarta. Do akt dołączono dwa wcześniej nieoznaczone materiały."
-        : "Skrzyneczka wymaga czterocyfrowego kodu. Kod zostanie ustalony z materiałów zabezpieczonych przez policję.";
+        : "Skrzyneczka wymaga czterech cyfr. W zapiskach Edwarda nawet zwyczajna receptura potrafiła zachować porządek liczb.";
 
       return header(file, "materiał oględzinowy") +
         '<div class="document-paper">' +
           '<p><strong>RAPORT WŁASNY SHERLOCKA HOLMESA</strong></p>' +
           '<p>Biurko Edwarda nie wygląda jak miejsce opuszczone przez człowieka przygotowanego do ucieczki. Nie brakuje ubrań, pieniędzy, dokumentów osobistych ani przedmiotów potrzebnych do dłuższej podróży.</p>' +
           '<p>Kalendarz i plan dnia wskazują raczej na zwykły ciąg obowiązków: wizyta w firmie, przygotowanie do przejęcia części spraw ojca, wieczorny powrót do domu i kolejne spotkania następnego dnia.</p>' +
-          '<p>Jeżeli Edward zniknął, to nie dlatego, że sam zaplanował wyjazd. Ktoś znał jego dzień wystarczająco dobrze, by wybrać właściwy moment.</p>' +
+          '<p>Na tym etapie nic nie potwierdza przygotowanego wyjazdu. Trzeba porównać plan dnia z godzinami zapisanymi przez świadków i w firmowych rejestrach.</p>' +
           '<span class="signature">— Sherlock Holmes</span>' +
           '<div class="desk-material">' +
             '<div class="desk-stage" id="deskStage">' +
@@ -4308,10 +5127,10 @@
         '<div class="document-paper">' +
           '<p><strong>ODRĘCZNA ADNOTACJA HOLMESA</strong></p>' +
           '<p>Po zgłoszeniu porwania policja zabezpieczyła część drobnych przedmiotów z biurka Edwarda. Nie zatrzymano ich z powodu wielkiej wartości, lecz dlatego, że mogły ustalić ostatnie godziny chłopca przed zniknięciem.</p>' +
-          '<p>Należy udać się do posterunku policji i odebrać kopertę z dowodami. W warunkach terenowych posterunek oznacza namiot kadry.</p>' +
-          '<p>Interesują mnie przede wszystkim: godzina ostatniego potwierdzonego pobytu Edwarda poza domem, fragment jego planu dnia oraz każdy materiał, który może wskazać kod do zamkniętej skrzyneczki.</p>' +
+          '<p>Dowody odłożono osobno w posterunku. Koperta opatrzona nazwiskiem Edwarda powinna pozostać zamknięta do chwili porównania jej zawartości z pozostałymi aktami.</p>' +
+          '<p>Interesuje mnie przede wszystkim godzina ostatniego wiarygodnego widzenia Edwarda. Zeznania należy później porównać z ruchem pojazdów i kluczy; świadek częściej zapamiętuje kapelusz albo płaszcz niż twarz.</p>' +
           '<span class="signature">— Sherlock Holmes</span>' +
-          '<div class="sealed"><div><strong>Instrukcja terenowa.</strong> Ten dokument uzasadnia przejście do fizycznej koperty policyjnej. W samej stronie nie ma jeszcze rozwiązania — dowody znajdują się poza telefonem.</div></div>' +
+          '<div class="sealed"><div><strong>ADNOTACJA.</strong> Część materiału istnieje wyłącznie w zabezpieczonej kopercie policyjnej.</div></div>' +
         '</div>';
     }
 
@@ -4344,7 +5163,7 @@
           '<p><strong>WSKAZÓWKA ZAMKNIĘTA W SKRZYNECZCE EDWARDA</strong></p>' +
           '<p>Wewnątrz skrzyneczki znajduje się krótka notatka dotycząca mapy. Nie jest kompletna, lecz Edward musiał uznać ją za wartą zabezpieczenia.</p>' +
           '<div class="sealed"><div><strong>„Kolejny fragment znajduje się tam, gdzie wszyscy spotykają się przy posiłkach.”</strong></div></div>' +
-          '<p>Najprostsze zdania bywają najlepszym szyfrem. Jeżeli notatka jest prawdziwa, dalszego fragmentu mapy należy szukać w stołówce.</p>' +
+          '<p>Edward podkreślił jedynie dwa słowa: „wszyscy” oraz „posiłki”. Nie sądzę, by zrobił to dla ozdoby.</p>' +
           '<span class="signature">— Sherlock Holmes</span>' +
         '</div>';
     }
@@ -4357,20 +5176,8 @@
           '<p>Ten list nie był częścią oficjalnych akt policji. Znalazłem go wśród prywatnych rzeczy Edwarda, a jego treść wyjaśnia więcej niż pierwsze zeznania Sir Reginalda.</p>' +
           '<img class="archive-document-image" src="' + REGINALD_LETTER_IMAGE + '" alt="List Sir Reginalda Baskerville’a do Edwarda" draggable="false" />' +
           '<div class="archive-document-caption">Oryginał listu: Sir Reginald Baskerville do Edwarda, 30 września 1897 roku.</div>' +
-          '<p>Sir Reginald przyznaje w nim, że Arthur Moore przyjął wiadomość o przyszłym przekazaniu firmy Edwardowi chłodno i z rozgoryczeniem. Nie jest to jeszcze dowód winy, lecz jest to pierwszy wyraźny ślad motywu.</p>' +
-          '<p>W sprawie porwania nie wolno lekceważyć człowieka, który zna dom, firmę, pieniądze oraz słabości rodziny — i jednocześnie czuje, że odebrano mu coś, na co czekał latami.</p>' +
-          '<span class="signature">— Sherlock Holmes</span>' +
-        '</div>';
-    }
-
-    function renderEdwardNotebookOld() {
-      const file = filesA[5];
-      return header(file, "notatnik z zamkniętej szuflady") +
-        '<div class="document-paper">' +
-          '<p><strong>NOTATNIK EDWARDA</strong></p>' +
-          '<p>Ten materiał został wydobyty z szuflady biurka po odnalezieniu klucza w pokoju Edwarda.</p>' +
-          '<div class="sealed"><div><img src="' + NOTEBOOK_COVER_IMAGE + '" alt="Okładka notatnika Edwarda" style="display:block;width:min(260px,70vw);margin:0 auto 14px;border-radius:10px;box-shadow:0 18px 45px rgba(0,0,0,.45)" /><strong>Miejsce przygotowane pod animowany notatnik.</strong> Gdy dostarczysz zdjęcia stron, podłączę je tutaj jako otwieraną książkę: okładka, dwie strony naraz i płynne przewracanie kart.</div></div>' +
-          '<p>Na razie zapisuję jedynie stan akt: notatnik nie powinien być dostępny przed odnalezieniem klucza.</p>' +
+          '<p>List zapisuje reakcję na decyzję o przyszłości przedsiębiorstwa. Uraza sama w sobie nie jest dowodem i nie wolno mi mylić emocji z winą.</p>' +
+          '<p>Ten szczegół nabierze znaczenia dopiero po zestawieniu go z dostępem do pomieszczeń, ruchem firmowych pojazdów oraz opisami pozostawionymi przez świadków.</p>' +
           '<span class="signature">— Sherlock Holmes</span>' +
         '</div>';
     }
@@ -4378,6 +5185,21 @@
     function renderEdwardNotebook() {
       const file = filesA[5];
       const firstPage = NOTEBOOK_PAGE_IMAGES[0] || NOTEBOOK_COVER_IMAGE;
+      if (!state.notebookUnlocked) {
+        return header(file, "notatnik zabezpieczony") +
+          '<div class="document-paper">' +
+            '<p><strong>NOTATNIK EDWARDA</strong></p>' +
+            '<p>Szuflada została otwarta, lecz sam notatnik zabezpieczono czterocyfrowym zamkiem. Mechanizm nie reaguje na daty z rodzinnych dokumentów. Cztery cyfry należy odtworzyć z porządku symboli połączonych na tablicy śledczej.</p>' +
+            '<span class="signature">— Sherlock Holmes</span>' +
+            '<div class="notebook-lock-panel">' +
+              '<img src="' + NOTEBOOK_COVER_IMAGE + '" alt="Zamknięty notatnik Edwarda" draggable="false" />' +
+              '<label for="notebookCode">Czterocyfrowe zabezpieczenie notatnika</label>' +
+              '<input id="notebookCode" type="text" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="0000" />' +
+              '<button id="notebookUnlock" type="button">Otwórz notatnik</button>' +
+              '<div class="msg" id="notebookLockMessage"></div>' +
+            '</div>' +
+          '</div>';
+      }
       return header(file, "notatnik z zamkniętej szuflady") +
         '<div class="document-paper">' +
           '<p><strong>NOTATNIK EDWARDA</strong></p>' +
@@ -4399,7 +5221,7 @@
 
     function renderB1() {
       const file = filesB[0];
-      const hasMagnifier = !!state.a1BoxOpen;
+      const hasMagnifier = !!state.policeBoxOpen;
       const clueCount = foundRansomClueCount();
       const noteRotations = [-7, 4, -3, 7, -6, 5];
       const arrowRotations = { RIGHT: 0, DOWN: 90, LEFT: 180, UP: -90 };
@@ -4413,8 +5235,8 @@
         '</span>'
       ).join("");
       const clueStatus = hasMagnifier
-        ? ('Lupa ze skrzyneczki jest dostępna. Ukryty zapis pojawia się tylko w szkle i znika po odsunięciu lupy. Odnalezione punkty: <strong>' + clueCount + ' / ' + RANSOM_LENS_CLUES.length + '</strong>.')
-        : 'W aktach widać ślady atramentu, których nie da się odczytać gołym okiem. Potrzebna będzie lupa.';
+        ? ('Lupa z policyjnej skrzynki dowodowej jest dostępna. Ukryty zapis pojawia się tylko w szkle i znika po odsunięciu lupy. Odnalezione punkty: <strong>' + clueCount + ' / ' + RANSOM_LENS_CLUES.length + '</strong>.')
+        : 'W aktach widać ślady, których nie da się odczytać gołym okiem. Odpowiednie narzędzie zabezpieczono razem z dowodami policyjnymi.';
       return header(file, "dowód w sprawie okupu") +
         '<div class="document-paper">' +
           '<p><strong>LIST OD PORYWACZA</strong></p>' +
@@ -4425,8 +5247,8 @@
           '</div>' +
           '<div class="archive-document-caption">Kopia listu zabezpieczona po zgłoszeniu porwania Edwarda Baskerville’a.</div>' +
           '<div class="magnifier-clue-status" id="magnifierClueStatus">' + clueStatus + '</div>' +
-          '<p>Kwota jest wysoka, lecz nie przypadkowa. Autor wie, że Sir Reginald może ją zebrać. Wie również, że rodzina i firma są obserwowane. To nie brzmi jak działanie człowieka z ulicy.</p>' +
-          '<p>Jeżeli porywacz naprawdę śledzi dom oraz przedsiębiorstwo, musiał znać rytm obu miejsc. Właśnie dlatego dalsze akta należy czytać razem: list, materiały zgromadzone przez policję i archiwum przejazdów pojazdów.</p>' +
+          '<p>Wysokość żądania i dobór słów mogą świadczyć o rzeczywistej wiedzy autora — albo być próbą wywołania właśnie takiego wrażenia. Sam list nie wskazuje konkretnej osoby.</p>' +
+          '<p>Należy zestawić jego treść z zeznaniami, dostępem do firmy i zapisami przejazdów. Dopiero zgodność kilku niezależnych szczegółów będzie miała wartość dowodową.</p>' +
           '<span class="signature">— Sherlock Holmes</span>' +
         '</div>';
     }
@@ -4456,14 +5278,98 @@
         '</div>';
     }
 
+    function renderFinalPoliceReport() {
+      const file = filesB[3];
+      if (!hasFinalCheckpoint()) {
+        return header(file, "akta wydobyte z sejfu") +
+          '<div class="document-paper">' +
+            '<p><strong>AKTA ŚLEDCZE</strong></p>' +
+            '<p>Sejf uwolnił teczkę, lecz formularz pozostaje zabezpieczony. Nie pozwalam sporządzać końcowego raportu na podstawie niepełnego materiału.</p>' +
+            '<p>Dopiero dwanaście odzyskanych cyfr potwierdzi, że wszystkie najważniejsze ślady zostały obejrzane. Wtedy zapis dochodzenia zostanie zabezpieczony i formularz stanie się dostępny.</p>' +
+            '<span class="signature">— Sherlock Holmes</span>' +
+            '<div class="sealed"><div><strong>FORMULARZ NIEAKTYWNY.</strong> Brakuje pełnego zestawu cyfr w panelu zgromadzonych dowodów.</div></div>' +
+          '</div>';
+      }
+
+      if (state.finalReportSolved) {
+        const orderPanel = state.finalOrderSolved
+          ? '<div class="msg ok">KOLEJNOŚĆ POTWIERDZONA. Końcowy zapis jest gotowy do przekazania kadrze.</div><button class="final-report-submit" id="showSolvedCase" type="button">POKAŻ KOŃCOWY ZAPIS</button>'
+          : '<div class="msg ok">AKTA PRZYJĘTE. Wszystkie cyfry zostały odzyskane, lecz ich kolejność nadal nie jest potwierdzona.</div>' +
+            '<div class="final-order-panel"><p>Potrzebny jest jeszcze czterocyfrowy klucz indeksowy. Nie pozostawiłem go w archiwum elektronicznym. Szukaj tam, gdzie ustawienie tytułów jest ważniejsze od treści pojedynczej strony.</p><input id="finalOrderCode" type="text" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="0000" /><button id="confirmFinalOrder" type="button">Uporządkuj cyfry</button><div class="msg" id="finalOrderMessage"></div></div>';
+        return header(file, "raport zatwierdzony") +
+          '<div class="document-paper">' +
+            '<p><strong>AKTA ŚLEDCZE</strong></p>' +
+            '<p>Wnioski zostały porównane z materiałami zgromadzonymi w archiwum. Wszystkie odpowiedzi są zgodne z przebiegiem zdarzeń.</p>' +
+            orderPanel +
+            '<span class="signature">— Sherlock Holmes</span>' +
+          '</div>';
+      }
+
+      if (!state.finalReportDraft || typeof state.finalReportDraft !== "object") state.finalReportDraft = {};
+      const fields = FINAL_REPORT_QUESTIONS.map((question, index) =>
+        '<div class="final-report-field" data-final-field="' + question.id + '">' +
+          '<label for="finalAnswer' + index + '">' + (index + 1) + '. ' + question.label + '</label>' +
+          '<small>' + question.hint + '</small>' +
+          '<input id="finalAnswer' + index + '" data-final-answer="' + question.id + '" type="text" autocomplete="off" autocapitalize="words" spellcheck="false" value="' + escapeHtml(state.finalReportDraft[question.id] || "") + '" />' +
+        '</div>'
+      ).join("");
+
+      return header(file, "formularz z sejfu policyjnego") +
+        '<div class="document-paper">' +
+          '<p><strong>AKTA ŚLEDCZE</strong></p>' +
+          '<p>Nie wystarczy wskazać podejrzanego. Każdy wniosek musi zgadzać się z godzinami, trasą pojazdu, motywem oraz miejscem, do którego prowadzą akta.</p>' +
+          '<p>Komplet cyfr został odnaleziony. Od tej chwili zapis dochodzenia jest zabezpieczony: można opuszczać formularz, wracać do dokumentów i poprawiać odpowiedzi bez utraty postępu.</p>' +
+          '<span class="signature">— Sherlock Holmes</span>' +
+          '<div class="final-report-form" id="finalReportForm">' + fields +
+            '<button class="final-report-submit" id="submitFinalReport" type="button">PRZEKAŻ RAPORT DO WERYFIKACJI</button>' +
+            '<div class="msg" id="finalReportMessage"></div>' +
+          '</div>' +
+        '</div>';
+    }
+
+    function finalCoordinatesRows() {
+      const digits = DIGITS.slice(0, 12);
+      return [digits.slice(0, 6).join(""), digits.slice(6, 12).join("")];
+    }
+
+    function closeFinalCaseModal() {
+      const modal = document.getElementById("caseFinalModal");
+      if (modal) modal.remove();
+      document.documentElement.classList.remove("desk-modal-lock");
+    }
+
+    function showFinalCaseModal() {
+      if (!state.finalOrderSolved) return;
+      closeFinalCaseModal();
+      const finalRows = finalCoordinatesRows();
+      const modal = document.createElement("div");
+      modal.className = "case-final-modal";
+      modal.id = "caseFinalModal";
+      modal.innerHTML = '<div class="case-final-card" role="dialog" aria-modal="true" aria-labelledby="caseFinalTitle">' +
+        '<h2 id="caseFinalTitle">Dochodzenie zakończone</h2>' +
+        '<p>Udało Wam się rozwiązać sprawę porwania Edwarda Baskerville’a i odtworzyć tok rozumowania Sherlocka Holmesa.</p>' +
+        '<div class="final-coordinates"><span>' + finalRows[0] + '</span><span>' + finalRows[1] + '</span></div>' +
+        '<p>Przedstawcie uporządkowany zapis cyfr kadrze.</p>' +
+        '<p><strong>Po przekazaniu zapisu wyzwanie zostaje zakończone.</strong></p>' +
+        '<button class="case-final-close" id="caseFinalClose" type="button">ZAMKNIJ RAPORT</button>' +
+      '</div>';
+      document.body.appendChild(modal);
+      document.documentElement.classList.add("desk-modal-lock");
+      document.getElementById("caseFinalClose").onclick = closeFinalCaseModal;
+      modal.addEventListener("click", event => {
+        if (event.target === modal) closeFinalCaseModal();
+      });
+      playSfx("unlock");
+    }
+
     function renderVehicleArchive() {
-      const file = filesC[3];
+      const file = filesC[2];
       if (!state.vehicleArchiveAuthorized) {
         return header(file, "dostęp chroniony") +
           '<div class="document-paper">' +
             '<p><strong>WEWNĘTRZNE ARCHIWUM PRZEJAZDÓW</strong></p>' +
             '<p>Rejestr pojazdów Baskerville Trading Company nie jest przechowywany wśród zwykłych ksiąg. Dostęp wymaga osobnego hasła używanego przez administrację przedsiębiorstwa.</p>' +
-            '<p>Nie próbuję odgadywać tras bez dokumentów. Najpierw należy uzyskać dostęp do archiwum, a następnie porównać numery pojazdów, godziny pobrania kluczy i zapisane postoje.</p>' +
+            '<p>Nie próbuję odgadywać tras bez dokumentów. Regułę dostępu pozostawiono przy opisie osoby odpowiedzialnej za ekspedycję i archiwum pojazdów na planie przedsiębiorstwa.</p>' +
             '<span class="signature">— Sherlock Holmes</span>' +
             '<div class="vehicle-login" id="vehicleArchiveLogin">' +
               '<label for="vehicleArchivePassword">Hasło do archiwum firmowego</label>' +
@@ -4484,7 +5390,7 @@
           '<div class="vehicle-control vehicle-combobox" id="vehicleCombobox">' +
             '<label for="vehicleSearch">Numer pojazdu</label>' +
             '<div class="vehicle-search-row">' +
-              '<input id="vehicleSearch" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" value="' + escapeHtml(query) + '" placeholder="np. B-13647" />' +
+              '<input id="vehicleSearch" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" value="' + escapeHtml(query) + '" placeholder="np. B-12345" />' +
               '<button id="vehicleClear" type="button" aria-label="Wyczyść numer">×</button>' +
             '</div>' +
             '<div class="vehicle-results" id="vehicleResults" hidden></div>' +
@@ -4518,7 +5424,7 @@
         '<div class="document-paper">' +
           '<p><strong>' + file.title + '</strong></p>' +
           '<p>Pokój Edwarda wymaga oględzin bez pośpiechu. Widok należy przesuwać palcem, nie oczami policjanta szukającego tylko oczywistości. Małe przedmioty bywają w takich sprawach większe od mebli.</p>' +
-          '<p>Nie zakładam jeszcze, że Edward został stąd zabrany. Najpierw muszę ustalić, co w pokoju pozostało nie na swoim miejscu. Szukam klucza do zamkniętej szuflady oraz fragmentów dziennika portierni.</p>' +
+          '<p>Nie zakładam jeszcze, że Edward został stąd zabrany. Najpierw muszę ustalić, co w pokoju pozostało nie na swoim miejscu. Drobiazgi wsunięte między książki, tkaniny i meble mogą należeć do zupełnie innych akt.</p>' +
           '<p class="porter-puzzle-note">Odnalezione fragmenty dziennika portierni: <strong>' + fragmentCount + ' / ' + PORTER_PUZZLE_PIECES.length + '</strong>.</p>' +
           '<span class="signature">— Sherlock Holmes</span>' +
           '<div class="room-section-grid" id="roomSectionGrid">' + sectionCards + '</div>' +
@@ -4565,7 +5471,7 @@
       return header(file, complete ? "dokument odtworzony" : "materiał porwany") +
         '<div class="document-paper">' +
           '<p><strong>DZIENNIK PORTIERNI — FRAGMENTY</strong></p>' +
-          '<p>Nie znalazłem pełnego dziennika. Znalazłem ślady po kartce, która została rozdarta, a jej części ukryto w pokoju Edwarda. Jeżeli ten zapis miał zniknąć, musiał zawierać godzinę albo nazwisko, którego nie wolno było zostawić w aktach.</p>' +
+          '<p>Nie znalazłem pełnego dziennika. Znalazłem ślady po kartce, która została rozdarta, a jej części znalazły się w różnych miejscach pokoju Edwarda. Powód rozdzielenia dokumentu pozostaje nieznany.</p>' +
           '<p>Fragmenty pojawią się na planszy dopiero po odnalezieniu ich w pokoju. Przesuwaj je palcem po jednym dużym obszarze. Pojedynczy fragment nie zostanie zatwierdzony osobno; dopiero poprawne ułożenie całej kartki zablokuje dokument w jednym kawałku.</p>' +
           '<span class="signature">— Sherlock Holmes</span>' +
           '<div class="porter-puzzle" id="porterPuzzle">' +
@@ -4575,7 +5481,7 @@
               pieces +
             '</div>' +
             (found.length ? '' : '<div class="porter-puzzle-note">Brak odnalezionych fragmentów. Wróć do pokoju Edwarda i przeszukaj obszary dokładniej.</div>') +
-            (complete ? '<div class="porter-complete"><strong>DZIENNIK PORTIERNI ODTWORZONY.</strong><br />W zapisie widać dwa momenty, które trudno uznać za przypadek: 16:05 — Arthur Moore pobiera klucz do pojazdu B-13647; 19:18 — Arthur Moore zwraca klucz. Między tymi godzinami Edward znika.</div>' : '') +
+            (complete ? '<div class="porter-complete"><strong>DZIENNIK PORTIERNI ODTWORZONY.</strong><br />Nie zapisuję tu gotowego wniosku. Porównaj godzinę ostatniego wiarygodnego widzenia Edwarda z ruchem kluczy i pojazdów. Następnie wróć do zeznań: szczegół ubioru — choćby kapelusz lub płaszcz — może być równie ważny jak nazwisko.</div>' : '') +
           '</div>' +
         '</div>';
     }
@@ -4584,14 +5490,14 @@
       return (DIAL_ORDER.indexOf(direction) * 90) + "deg";
     }
 
-    function renderC3Safe() {
-      const file = filesC[2];
+    function renderPoliceSafe() {
+      const file = filesB[2];
       const dials = getSafeDialState();
       const safeOpen = !!state.safeOpen;
       return header(file, safeOpen ? "sejf otwarty" : "sejf zamknięty") +
         '<div class="document-paper">' +
-          '<p><strong>SEJF FIRMOWY</strong></p>' +
-          '<p>Sejf należy do Baskerville Trading Company, nie do Edwarda. Nie przyjmuje cyfr: sześć tarcz wskazuje kierunki. Nie próbuję zgadywać — właściwe ustawienie powinno wynikać z innego materiału. Jeżeli szkło lupy pokazało na liście od porywacza kolejne numery i strzałki, należy potraktować je jak sekwencję.</p>' +
+          '<p><strong>SEJF POLICYJNY</strong></p>' +
+          '<p>Sejf w pokoju prowadzącego dochodzenie nie przyjmuje cyfr: sześć tarcz wskazuje kierunki. Nie próbuję zgadywać. Właściwy układ pozostawiłem w materiale, którego druga warstwa ujawnia się dopiero przez szkło.</p>' +
           '<span class="signature">— Sherlock Holmes</span>' +
           '<div class="safe-panel" id="safePanel">' +
             '<div class="safe-door ' + (safeOpen ? 'open' : '') + '">' +
@@ -4605,7 +5511,7 @@
               '<button id="safeResetBtn" type="button">Ustaw od nowa</button>' +
             '</div>' +
             '<div class="safe-message ' + (safeOpen ? 'success' : '') + '" id="safeMessage">' +
-              (safeOpen ? '<strong>SEJF OTWARTY.</strong> Wnętrze sejfu jest gotowe pod kolejny materiał fabularny.' : (foundRansomClueCount() === RANSOM_LENS_CLUES.length ? 'Wszystkie punkty z listu zostały już namierzone przez szkło lupy.' : 'Brakuje pełnej sekwencji. Wróć do listu od porywacza i przesuwaj lupę po całym dokumencie.')) +
+              (safeOpen ? '<strong>SEJF OTWARTY.</strong> Wewnątrz znajdują się Akta Śledcze.' : (foundRansomClueCount() === RANSOM_LENS_CLUES.length ? 'Wszystkie punkty ukrytego zapisu zostały już namierzone przez szkło.' : 'Brakuje pełnej sekwencji. Sześć tarcz odpowiada sześciu oznaczeniom widocznym wyłącznie przez szkło.')) +
             '</div>' +
           '</div>' +
         '</div>';
@@ -4627,8 +5533,8 @@
     }
 
     function getPoliceBoxDigits() {
-      if (!Array.isArray(state.policeBoxDigits) || state.policeBoxDigits.length !== 3) {
-        state.policeBoxDigits = ["0", "0", "0"];
+      if (!Array.isArray(state.policeBoxDigits) || state.policeBoxDigits.length !== 4) {
+        state.policeBoxDigits = ["0", "0", "0", "0"];
       }
       return state.policeBoxDigits;
     }
@@ -4788,16 +5694,15 @@
       return '<div class="padlock-scene unlocked">' +
           '<div class="padlock-object">' +
             '<img class="padlock-image" src="' + PADLOCK_IMAGE + '" alt="Otwarta kłódka skrzyneczki" draggable="false" />' +
-            '<div class="lock-wheel" data-box-digit="0" data-digit="2"><div class="lock-wheel-strip">' + wheelDigitStripHtml("2") + '</div></div>' +
-            '<div class="lock-wheel" data-box-digit="1" data-digit="7"><div class="lock-wheel-strip">' + wheelDigitStripHtml("7") + '</div></div>' +
-            '<div class="lock-wheel" data-box-digit="2" data-digit="4"><div class="lock-wheel-strip">' + wheelDigitStripHtml("4") + '</div></div>' +
-            '<div class="lock-wheel" data-box-digit="3" data-digit="1"><div class="lock-wheel-strip">' + wheelDigitStripHtml("1") + '</div></div>' +
+            '<div class="lock-wheel" data-box-digit="0" data-digit="4"><div class="lock-wheel-strip">' + wheelDigitStripHtml("4") + '</div></div>' +
+            '<div class="lock-wheel" data-box-digit="1" data-digit="3"><div class="lock-wheel-strip">' + wheelDigitStripHtml("3") + '</div></div>' +
+            '<div class="lock-wheel" data-box-digit="2" data-digit="3"><div class="lock-wheel-strip">' + wheelDigitStripHtml("3") + '</div></div>' +
+            '<div class="lock-wheel" data-box-digit="3" data-digit="6"><div class="lock-wheel-strip">' + wheelDigitStripHtml("6") + '</div></div>' +
           '</div>' +
         '</div>' +
         '<div class="drawer-ui box-ui">' +
           '<h3>Skrzyneczka otwarta</h3>' +
-          '<div class="box-result"><img class="magnifier-photo" src="' + MAGNIFIER_IMAGE + '" alt="Realistyczna lupa znaleziona w skrzyneczce" draggable="false" /><p>W środku znajduje się mała lupa. Może przydać się przy badaniu dokumentów w kolejnej ścieżce.</p></div>' +
-          '<p>W skrzyneczce leży także zapieczętowany list oraz krótka wskazówka dotycząca mapy. Oba materiały zostały dopisane do akt.</p>' +
+          '<p>W skrzyneczce leży zapieczętowany list oraz krótka wskazówka dotycząca mapy. Oba materiały zostały dopisane do akt.</p>' +
           '<div class="drawer-found">DODANO DO AKT: MATERIAŁY ZE SKRZYNECZKI</div>' +
           '<span class="signature">— Sherlock Holmes</span>' +
         '</div>';
@@ -4815,20 +5720,284 @@
       return '<div class="desk-note-panel police-ui"><h3>' + item.title + '</h3><p>' + item.note + '</p><span class="signature">— Sherlock Holmes</span></div>';
     }
 
+    function getPoliceBoardStrings() {
+      if (!state.policeBoardStrings || typeof state.policeBoardStrings !== "object") {
+        state.policeBoardStrings = {};
+      }
+      Object.keys(POLICE_BOARD_STRINGS).forEach(color => {
+        if (!Array.isArray(state.policeBoardStrings[color])) state.policeBoardStrings[color] = [];
+        state.policeBoardStrings[color] = state.policeBoardStrings[color].filter(pin =>
+          POLICE_BOARD_PINS.some(item => item.id === pin)
+        );
+      });
+      return state.policeBoardStrings;
+    }
+
+    function policeBoardPin(id) {
+      return POLICE_BOARD_PINS.find(pin => pin.id === id) || null;
+    }
+
+    function policeBoardPath(pinIds, preview) {
+      const points = pinIds.map(policeBoardPin).filter(Boolean).map(pin => ({ x: pin.x, y: pin.y }));
+      if (preview) points.push({ x: preview.x, y: preview.y });
+      if (points.length < 2) return "";
+      let path = "M " + (points[0].x * 10).toFixed(1) + " " + (points[0].y * 7.5).toFixed(1);
+      for (let index = 1; index < points.length; index += 1) {
+        const from = points[index - 1];
+        const to = points[index];
+        const x1 = from.x * 10;
+        const y1 = from.y * 7.5;
+        const x2 = to.x * 10;
+        const y2 = to.y * 7.5;
+        const distance = Math.hypot(x2 - x1, y2 - y1);
+        const sag = Math.min(44, 8 + distance * .047);
+        const controlX = (x1 + x2) / 2;
+        const controlY = (y1 + y2) / 2 + sag;
+        path += " Q " + controlX.toFixed(1) + " " + controlY.toFixed(1) + " " + x2.toFixed(1) + " " + y2.toFixed(1);
+      }
+      return path;
+    }
+
+    function policeBoardStringSvg(color, pathData, preview) {
+      if (!pathData) return "";
+      const meta = POLICE_BOARD_STRINGS[color];
+      return '<g class="board-string-group' + (preview ? ' preview' : '') + '" style="--string-color:' + meta.color + '">' +
+        '<path class="board-string-shadow" d="' + pathData + '"></path>' +
+        '<path class="board-string-main" d="' + pathData + '"></path>' +
+        '<path class="board-string-glint" d="' + pathData + '"></path>' +
+      '</g>';
+    }
+
+    function drawPoliceBoardStrings(preview) {
+      const svg = document.getElementById("policeBoardLines");
+      if (!svg) return;
+      const strings = getPoliceBoardStrings();
+      svg.innerHTML = Object.keys(POLICE_BOARD_STRINGS).map(color => {
+        const ownPreview = preview && preview.color === color ? preview : null;
+        return policeBoardStringSvg(color, policeBoardPath(strings[color], ownPreview), Boolean(ownPreview));
+      }).join("");
+    }
+
+    function drawPoliceBoardHandles() {
+      const handles = document.getElementById("policeBoardHandles");
+      if (!handles) return;
+      const strings = getPoliceBoardStrings();
+      handles.innerHTML = Object.keys(POLICE_BOARD_STRINGS).map(color => {
+        const pins = strings[color];
+        const pin = pins.length ? policeBoardPin(pins[pins.length - 1]) : null;
+        if (!pin) return "";
+        const meta = POLICE_BOARD_STRINGS[color];
+        return '<button class="board-string-handle' + (activePoliceBoardString === color ? ' active' : '') + '" type="button" data-board-handle="' + color + '" aria-label="Wolny koniec sznurka: ' + meta.label + '" style="left:' + pin.x + '%;top:' + pin.y + '%;--string-color:' + meta.color + '"></button>';
+      }).join("");
+    }
+
+    function updatePoliceBoardUi() {
+      const strings = getPoliceBoardStrings();
+      document.querySelectorAll('[data-board-color]').forEach(button => {
+        button.classList.toggle("active", button.dataset.boardColor === activePoliceBoardString);
+      });
+      const status = document.getElementById("boardStringStatus");
+      if (status) {
+        const meta = POLICE_BOARD_STRINGS[activePoliceBoardString];
+        const count = strings[activePoliceBoardString].length;
+        status.textContent = count
+          ? "Aktywny sznurek: " + meta.label + ". Zaczepów: " + count + ". Przeciągnij końcówkę do następnej pinezki; można wrócić także do pinezki użytej wcześniej."
+          : "Aktywny sznurek: " + meta.label + ". Dotknij pierwszej pinezki; każda z nich może utrzymać kilka odcinków.";
+      }
+    }
+
+    function clearPoliceBoardNearPins() {
+      document.querySelectorAll('.police-board-pin.near').forEach(pin => pin.classList.remove("near"));
+    }
+
+    function nearestPoliceBoardPin(clientX, clientY) {
+      const canvas = document.getElementById("policeBoardCanvas");
+      if (!canvas) return null;
+      const rect = canvas.getBoundingClientRect();
+      const snap = Math.max(26, Math.min(44, rect.width * .075));
+      let nearest = null;
+      let best = Infinity;
+      POLICE_BOARD_PINS.forEach(pin => {
+        const x = rect.left + rect.width * pin.x / 100;
+        const y = rect.top + rect.height * pin.y / 100;
+        const distance = Math.hypot(clientX - x, clientY - y);
+        if (distance < best) {
+          best = distance;
+          nearest = pin;
+        }
+      });
+      return best <= snap ? nearest : null;
+    }
+
+    function bindPoliceBoardHandles() {
+      document.querySelectorAll('[data-board-handle]').forEach(handle => {
+        let pointerSequenceHandled = false;
+        handle.addEventListener("click", event => {
+          event.preventDefault();
+          event.stopPropagation();
+          if (pointerSequenceHandled) {
+            pointerSequenceHandled = false;
+            return;
+          }
+          const color = handle.dataset.boardHandle;
+          const pins = getPoliceBoardStrings()[color];
+          if (!pins.length) return;
+          suppressPoliceBoardPinClickUntil = Date.now() + 450;
+          activePoliceBoardString = color;
+          pins.pop();
+          saveState();
+          playSfx("tick");
+          drawPoliceBoardStrings();
+          drawPoliceBoardHandles();
+          updatePoliceBoardUi();
+          bindPoliceBoardHandles();
+        });
+
+        handle.addEventListener("pointerdown", event => {
+          event.preventDefault();
+          event.stopPropagation();
+          const color = handle.dataset.boardHandle;
+          activePoliceBoardString = color;
+          updatePoliceBoardUi();
+          const canvas = document.getElementById("policeBoardCanvas");
+          if (!canvas) return;
+          const drag = { startX: event.clientX, startY: event.clientY, moved: false };
+          try { handle.setPointerCapture(event.pointerId); } catch (_) {}
+
+          const move = moveEvent => {
+            moveEvent.preventDefault();
+            const rect = canvas.getBoundingClientRect();
+            if (Math.hypot(moveEvent.clientX - drag.startX, moveEvent.clientY - drag.startY) > 4) drag.moved = true;
+            const x = Math.max(0, Math.min(100, (moveEvent.clientX - rect.left) / rect.width * 100));
+            const y = Math.max(0, Math.min(100, (moveEvent.clientY - rect.top) / rect.height * 100));
+            drawPoliceBoardStrings({ color, x, y });
+            clearPoliceBoardNearPins();
+            const near = nearestPoliceBoardPin(moveEvent.clientX, moveEvent.clientY);
+            if (near) {
+              const pinButton = document.querySelector('[data-board-pin="' + near.id + '"]');
+              if (pinButton) pinButton.classList.add("near");
+            }
+          };
+
+          const end = endEvent => {
+            endEvent.preventDefault();
+            endEvent.stopPropagation();
+            pointerSequenceHandled = true;
+            suppressPoliceBoardPinClickUntil = Date.now() + 450;
+            handle.removeEventListener("pointermove", move);
+            handle.removeEventListener("pointerup", end);
+            handle.removeEventListener("pointercancel", end);
+            try { handle.releasePointerCapture(endEvent.pointerId); } catch (_) {}
+            const strings = getPoliceBoardStrings();
+            const pins = strings[color];
+            const tapDistance = Math.hypot(endEvent.clientX - drag.startX, endEvent.clientY - drag.startY);
+            if (tapDistance < 14) {
+              pins.pop();
+              playSfx("tick");
+              saveState();
+            } else {
+              const near = nearestPoliceBoardPin(endEvent.clientX, endEvent.clientY);
+              if (near && pins[pins.length - 1] !== near.id) {
+                pins.push(near.id);
+                playSfx("click");
+                saveState();
+              }
+            }
+            clearPoliceBoardNearPins();
+            drawPoliceBoardStrings();
+            drawPoliceBoardHandles();
+            updatePoliceBoardUi();
+            bindPoliceBoardHandles();
+          };
+
+          handle.addEventListener("pointermove", move);
+          handle.addEventListener("pointerup", end);
+          handle.addEventListener("pointercancel", end);
+        });
+      });
+    }
+
+    function bindPoliceBoard() {
+      if (!document.getElementById("policeBoardCanvas")) return;
+      getPoliceBoardStrings();
+      drawPoliceBoardStrings();
+      drawPoliceBoardHandles();
+      updatePoliceBoardUi();
+      bindPoliceBoardHandles();
+
+      document.querySelectorAll('[data-board-color]').forEach(button => {
+        button.addEventListener("click", () => {
+          activePoliceBoardString = button.dataset.boardColor;
+          drawPoliceBoardHandles();
+          updatePoliceBoardUi();
+          bindPoliceBoardHandles();
+          playSfx("click");
+        });
+      });
+
+      document.querySelectorAll('[data-board-pin]').forEach(button => {
+        button.addEventListener("click", event => {
+          event.preventDefault();
+          if (Date.now() < suppressPoliceBoardPinClickUntil) return;
+          const pinId = button.dataset.boardPin;
+          const pins = getPoliceBoardStrings()[activePoliceBoardString];
+          if (pins[pins.length - 1] === pinId) pins.pop();
+          else pins.push(pinId);
+          saveState();
+          playSfx("click");
+          drawPoliceBoardStrings();
+          drawPoliceBoardHandles();
+          updatePoliceBoardUi();
+          bindPoliceBoardHandles();
+        });
+      });
+
+      const undo = document.getElementById("boardStringUndo");
+      if (undo) undo.addEventListener("click", () => {
+        const pins = getPoliceBoardStrings()[activePoliceBoardString];
+        if (pins.length) {
+          pins.pop();
+          saveState();
+          playSfx("tick");
+          drawPoliceBoardStrings();
+          drawPoliceBoardHandles();
+          updatePoliceBoardUi();
+          bindPoliceBoardHandles();
+        }
+      });
+
+      const reset = document.getElementById("boardStringsReset");
+      if (reset) reset.addEventListener("click", () => {
+        Object.keys(POLICE_BOARD_STRINGS).forEach(color => { getPoliceBoardStrings()[color] = []; });
+        saveState();
+        playSfx("paper");
+        drawPoliceBoardStrings();
+        drawPoliceBoardHandles();
+        updatePoliceBoardUi();
+        bindPoliceBoardHandles();
+      });
+    }
+
     function policeBoardView() {
-      return '<div class="police-focus-scene">' +
+      const pins = POLICE_BOARD_PINS.map(pin =>
+        '<button class="police-board-pin" type="button" data-board-pin="' + pin.id + '" aria-label="Pinezka ' + pin.id + '" style="left:' + pin.x + '%;top:' + pin.y + '%"></button>'
+      ).join("");
+      const palette = Object.entries(POLICE_BOARD_STRINGS).map(([key, string]) =>
+        '<button class="board-color-button" type="button" data-board-color="' + key + '" style="--string-color:' + string.color + '">' + string.label + '</button>'
+      ).join("");
+      return '<div class="police-focus-scene police-board-focus">' +
           '<div class="police-board-canvas" id="policeBoardCanvas">' +
             '<img src="' + POLICE_BOARD_IMAGE + '" alt="Korkowa tablica śledcza" draggable="false" />' +
-            '<svg class="police-board-lines" id="policeBoardLines" aria-hidden="true"></svg>' +
-            '<div class="police-board-tokens" id="policeBoardTokens"></div>' +
-            '<div class="police-board-placeholder">Miejsce przygotowane pod fotografie, zapiski i połączenia między dowodami.</div>' +
+            '<svg class="police-board-lines" id="policeBoardLines" viewBox="0 0 1000 750" preserveAspectRatio="none" aria-hidden="true"></svg>' +
+            '<div class="police-board-pins" id="policeBoardPins">' + pins + '</div>' +
+            '<div class="police-board-handles" id="policeBoardHandles"></div>' +
           '</div>' +
         '</div>' +
-        '<div class="drawer-ui police-ui">' +
+        '<div class="drawer-ui police-ui police-board-ui">' +
           '<h3>Tablica śledcza</h3>' +
-          '<p>' + POLICE_ITEMS.board.note + '</p>' +
-          '<div class="drawer-feedback">Tablica jest gotowa do późniejszego dodania kart dowodów, pinezek i linii łączących.</div>' +
-          '<span class="signature">— Sherlock Holmes</span>' +
+          '<div class="board-string-palette" id="boardStringPalette">' + palette + '</div>' +
+          '<div class="board-string-status" id="boardStringStatus">Wybierz kolor, a następnie dotknij pierwszej pinezki. Do jednej pinezki może wracać więcej niż jeden odcinek.</div>' +
+          '<div class="board-string-actions"><button id="boardStringUndo" type="button">Cofnij zaczep</button><button id="boardStringsReset" type="button">Zdejmij sznurki</button></div>' +
         '</div>';
     }
 
@@ -4844,8 +6013,8 @@
       return '<div class="police-box-focus' + (opened ? ' unlocked' : '') + '" id="policeBoxFocus">' +
           '<div class="police-box-crop" id="policeBoxCrop">' +
             '<img class="police-box-layer base" src="' + POLICE_BOX_CLEAN_IMAGE + '" alt="Drewniana skrzynka dowodowa" draggable="false" />' +
-            '<img class="police-box-layer closed" src="' + POLICE_BOX_CLOSED_IMAGE + '" alt="Pełna trzycyfrowa kłódka zamknięta na skrzynce" draggable="false" />' +
-            '<img class="police-box-layer open" src="' + POLICE_BOX_OPEN_IMAGE + '" alt="Otwarta trzycyfrowa kłódka" draggable="false" />' +
+            '<img class="police-box-layer closed" src="' + POLICE_BOX_CLOSED_IMAGE + '" alt="Pełna czterocyfrowa kłódka zamknięta na skrzynce" draggable="false" />' +
+            '<img class="police-box-layer open" src="' + POLICE_BOX_OPEN_IMAGE + '" alt="Otwarta czterocyfrowa kłódka" draggable="false" />' +
             policeBoxWheels() +
           '</div>' +
         '</div>';
@@ -4854,7 +6023,7 @@
     function policeBoxLockedView() {
       return policeBoxScene(false) +
         '<div class="drawer-ui box-ui police-ui" id="policeBoxPanel">' +
-          '<h3>Trzycyfrowa kłódka</h3>' +
+          '<h3>Czterocyfrowa kłódka</h3>' +
           '<p>' + POLICE_ITEMS.box.note + '</p>' +
           '<div class="police-box-code">Przesuwaj każdą rolkę palcem w górę lub w dół.</div>' +
           '<div class="box-actions"><button id="policeBoxOpen" type="button">Otwórz kłódkę</button><button id="policeBoxReset" type="button">Ustaw od nowa</button></div>' +
@@ -4866,8 +6035,8 @@
       return policeBoxScene(true) +
         '<div class="drawer-ui box-ui police-ui" id="policeBoxPanel">' +
           '<h3>Skrzynka dowodowa otwarta</h3>' +
-          '<p>Mechanizm ustąpił. Wnętrze skrzynki pozostaje przygotowane pod kolejny materiał śledztwa.</p>' +
-          '<div class="drawer-found">ZABEZPIECZENIE USUNIĘTE</div>' +
+          '<div class="box-result"><img class="magnifier-photo" src="' + MAGNIFIER_IMAGE + '" alt="Szklana lupa zabezpieczona przez policję" draggable="false" /><p>Wewnątrz zabezpieczono prawdziwą lupę ze szklanym okularem. Narzędzie może ujawnić ślady niewidoczne bezpośrednio na papierze.</p></div>' +
+          '<div class="drawer-found">ZNALEZIONO LUPĘ</div>' +
           '<span class="signature">— Sherlock Holmes</span>' +
         '</div>';
     }
@@ -4910,6 +6079,7 @@
     function bindPoliceModal() {
       const close = document.getElementById("policeClose");
       if (close) close.onclick = closePoliceModal;
+      bindPoliceBoard();
 
       document.querySelectorAll('.police-lock-wheel[data-police-digit]').forEach(wheel => {
         const index = Number(wheel.dataset.policeDigit);
@@ -4964,7 +6134,7 @@
 
       const reset = document.getElementById("policeBoxReset");
       if (reset) reset.onclick = () => {
-        state.policeBoxDigits = ["0", "0", "0"];
+        state.policeBoxDigits = ["0", "0", "0", "0"];
         saveState();
         playSfx("tick");
         document.querySelectorAll('.police-lock-wheel[data-police-digit]').forEach((wheel, index) => {
@@ -4985,15 +6155,18 @@
         const code = getPoliceBoxDigits().join("");
         const feedback = document.getElementById("policeBoxFeedback");
         if (code !== POLICE_BOX_CODE) {
+          const result = registerMistake();
+          if (result === false) return;
           if (feedback) {
             feedback.className = "drawer-feedback bad";
-            feedback.textContent = "Kłódka nie ustępuje. Układ cyfr nie zgadza się z mechanizmem.";
+            feedback.textContent = "Kłódka nie ustępuje. Układ cyfr nie zgadza się z mechanizmem. Pozostałe próby: " + (MAX_ERRORS - auth.mistakes) + ".";
           }
-          playSfx("bad");
           return;
         }
         state.policeBoxOpen = true;
+        awardProgress(6);
         saveState();
+        renderFiles();
         playSfx("unlock");
         const focus = document.getElementById("policeBoxFocus");
         if (focus) focus.classList.add("unlocked");
@@ -5004,8 +6177,8 @@
         const panel = document.getElementById("policeBoxPanel");
         if (panel) {
           panel.innerHTML = '<h3>Skrzynka dowodowa otwarta</h3>' +
-            '<p>Pałąk kłódki wysunął się z korpusu. Skrzynka nie jest już zabezpieczona.</p>' +
-            '<div class="drawer-found">ZABEZPIECZENIE USUNIĘTE</div>' +
+            '<div class="box-result"><img class="magnifier-photo" src="' + MAGNIFIER_IMAGE + '" alt="Szklana lupa zabezpieczona przez policję" draggable="false" /><p>Pałąk kłódki wysunął się z korpusu. W skrzynce znajduje się lupa ze szklanym okularem.</p></div>' +
+            '<div class="drawer-found">ZNALEZIONO LUPĘ</div>' +
             '<span class="signature">— Sherlock Holmes</span>';
         }
       };
@@ -5046,6 +6219,7 @@
       const unlockDeskDrawer = document.getElementById("unlockDeskDrawer");
       if (unlockDeskDrawer) unlockDeskDrawer.onclick = () => {
         state.a1DrawerUnlocked = true;
+        awardProgress(2);
         saveState();
         renderFiles();
         const body = document.getElementById("deskModalBody");
@@ -5117,13 +6291,16 @@
         const code = getA1BoxDigits().join("");
         const feedback = document.getElementById("boxFeedback");
         if (code !== A1_BOX_CODE) {
+          const result = registerMistake();
+          if (result === false) return;
           if (feedback) {
             feedback.className = "drawer-feedback bad";
-            feedback.textContent = "Kłódka nie ustępuje. Kod nie zgadza się z mechanizmem.";
+            feedback.textContent = "Kłódka nie ustępuje. Kod nie zgadza się z mechanizmem. Pozostałe próby: " + (MAX_ERRORS - auth.mistakes) + ".";
           }
           return;
         }
         state.a1BoxOpen = true;
+        awardProgress(1);
         saveState();
         playSfx("unlock");
         renderFiles();
@@ -5520,16 +6697,18 @@
           if (!input || !message) return;
           if (input.value.trim() === VEHICLE_ARCHIVE_PASSWORD) {
             state.vehicleArchiveAuthorized = true;
+            awardProgress(5);
             saveState();
             playSfx("unlock");
             renderFiles();
             renderView();
             return;
           }
+          const result = registerMistake();
+          if (result === false) return;
           message.classList.add("error");
-          message.textContent = "ODMOWA DOSTĘPU. Hasło niezgodne z rejestrem administracyjnym.";
+          message.textContent = "ODMOWA DOSTĘPU. Hasło niezgodne z rejestrem administracyjnym. Pozostałe próby: " + (MAX_ERRORS - auth.mistakes) + ".";
           input.select();
-          playSfx("bad");
         };
         if (button) button.addEventListener("click", authorize);
         if (input) input.addEventListener("keydown", event => {
@@ -5784,6 +6963,32 @@
         '</svg>';
     }
 
+    function bindNotebookLock() {
+      const button = document.getElementById("notebookUnlock");
+      const input = document.getElementById("notebookCode");
+      const message = document.getElementById("notebookLockMessage");
+      if (!button || !input) return;
+      const unlock = () => {
+        if (normalize(input.value) !== NOTEBOOK_CODE) {
+          const result = registerMistake();
+          if (result === false) return;
+          if (message) {
+            message.className = "msg bad";
+            message.textContent = "ZAMEK POZOSTAJE ZAMKNIĘTY. Pozostałe próby: " + (MAX_ERRORS - auth.mistakes) + ".";
+          }
+          return;
+        }
+        state.notebookUnlocked = true;
+        awardProgress(3);
+        saveState();
+        playSfx("unlock");
+        renderFiles();
+        renderView();
+      };
+      button.onclick = unlock;
+      input.addEventListener("keydown", event => { if (event.key === "Enter") unlock(); });
+    }
+
     function bindNotebookReader() {
       const reader = document.getElementById("notebookReader");
       const img = document.getElementById("notebookPageImg");
@@ -5901,8 +7106,8 @@
           const found = getRansomCluesFoundState();
           if (!found[activeClue.id]) {
             found[activeClue.id] = true;
+            awardProgress(6 + foundRansomClueCount());
             saveState();
-            playSfx(foundRansomClueCount() === RANSOM_LENS_CLUES.length ? "unlock" : "tick");
           }
         }
 
@@ -5989,6 +7194,7 @@
           const complete = PORTER_PUZZLE_PIECES.every(item => puzzle.placed[item.id] === item.slot);
           if (complete) {
             state.porterPuzzleComplete = true;
+            awardProgress(4);
             playSfx("unlock");
           } else {
             playSfx("tick");
@@ -6045,6 +7251,7 @@
           puzzle.positions[piece.id] = { x: piece.x, y: piece.y };
         });
         state.porterPuzzleComplete = true;
+        awardProgress(4);
         saveState();
         playSfx("unlock");
         renderFiles();
@@ -6180,22 +7387,98 @@
           state.safeOpen = true;
           saveState();
           playSfx("unlock");
+          renderFiles();
           renderView();
-        } else if (msg) {
-          msg.classList.remove("success");
-          msg.textContent = "Mechanizm nie ustąpił. Ustawienie tarcz nie zgadza się z ukrytym zapisem.";
-          playSfx("bad");
+        } else {
+          const result = registerMistake();
+          if (result === false) return;
+          if (msg) {
+            msg.classList.remove("success");
+            msg.textContent = "Mechanizm nie ustąpił. Ustawienie tarcz nie zgadza się z ukrytym zapisem. Pozostałe próby: " + (MAX_ERRORS - auth.mistakes) + ".";
+          }
         }
+      });
+    }
+
+    function bindFinalPoliceReport() {
+      const solvedButton = document.getElementById("showSolvedCase");
+      if (solvedButton) solvedButton.onclick = showFinalCaseModal;
+
+      const orderButton = document.getElementById("confirmFinalOrder");
+      const orderInput = document.getElementById("finalOrderCode");
+      if (orderButton && orderInput) {
+        const confirmOrder = () => {
+          const message = document.getElementById("finalOrderMessage");
+          if (normalize(orderInput.value) !== FINAL_ORDER_CODE) {
+            if (message) {
+              message.className = "msg bad";
+              message.textContent = "KLUCZ INDEKSOWY ODRZUCONY. Wróć do materiału, w którym kolejność tytułów tworzy osobny zapis.";
+            }
+            return;
+          }
+          state.finalOrderSolved = true;
+          state.progress = DIGITS.length;
+          state.digits = DIGITS.slice();
+          saveState();
+          playSfx("unlock");
+          renderFolders();
+          renderFiles();
+          renderView();
+          setTimeout(showFinalCaseModal, 420);
+        };
+        orderButton.onclick = confirmOrder;
+        orderInput.addEventListener("keydown", event => { if (event.key === "Enter") confirmOrder(); });
+      }
+
+      const submit = document.getElementById("submitFinalReport");
+      if (!submit) return;
+      if (!state.finalReportDraft || typeof state.finalReportDraft !== "object") state.finalReportDraft = {};
+      document.querySelectorAll("[data-final-answer]").forEach(input => {
+        input.addEventListener("input", () => {
+          state.finalReportDraft[input.dataset.finalAnswer] = input.value;
+          saveState();
+        });
+      });
+      submit.addEventListener("click", () => {
+        let allCorrect = true;
+        FINAL_REPORT_QUESTIONS.forEach(question => {
+          const input = document.querySelector('[data-final-answer="' + question.id + '"]');
+          const field = document.querySelector('[data-final-field="' + question.id + '"]');
+          state.finalReportDraft[question.id] = input ? input.value : "";
+          const answer = normalize(input ? input.value : "");
+          const correct = question.answers.includes(answer);
+          if (field) field.classList.toggle("invalid", !correct);
+          if (!correct) allCorrect = false;
+        });
+
+        const message = document.getElementById("finalReportMessage");
+        if (!allCorrect) {
+          saveState();
+          if (message) {
+            message.className = "msg bad";
+            message.textContent = "RAPORT WYMAGA KOREKTY. Zaznaczone pola nie zgadzają się z materiałami śledztwa. Możesz wrócić do akt; wpisane odpowiedzi pozostaną zapisane.";
+          }
+          return;
+        }
+
+        state.finalReportSolved = true;
+        saveState();
+        playSfx("unlock");
+        renderFolders();
+        renderFiles();
+        renderView();
       });
     }
 
     function bindCurrentFile() {
       bindVehicleArchive();
+      bindNotebookLock();
       bindNotebookReader();
       bindRoomExplorer();
       bindRansomMagnifier();
       bindPorterPuzzle();
       bindSafePuzzle();
+      bindFinalPoliceReport();
 
       document.querySelectorAll(".plan-hotspot").forEach(btn => {
         btn.addEventListener("click", () => openRoom(btn.dataset.room));
@@ -6299,22 +7582,11 @@
       if (e.target.id === "roomModal") closeRoom();
     });
     document.addEventListener("keydown", e => {
-      if (e.key === "Escape") { closeRoom(); closeDeskModal(); closePoliceModal(); }
+      if (e.key === "Escape") { closeRoom(); closeDeskModal(); closePoliceModal(); closeFinalCaseModal(); closeCaseLockScreen(); }
     });
 
-    document.getElementById("resetBtn").addEventListener("click", () => {
-      localStorage.removeItem(STORE_KEY);
-      state = loadState();
-      activeFolder = "A";
-      activeFile = "A-1";
-      renderFolders();
-      renderFiles();
-      renderView();
-    });
-
-    renderFolders();
-    renderFiles();
-    renderView();
+    bindEntryFlow();
+    showEntryFlow();
   </script>
 </body>
 </html>
